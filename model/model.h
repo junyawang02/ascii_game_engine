@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 
-#include "action.h"
-#include "controller.h"
-#include "line.h"
-#include "view.h"
+#include "../controller/controller.h"
+#include "../util/action.h"
+#include "../util/line.h"
+#include "../view/view.h"
 
 using std::string;
 using std::unique_ptr;

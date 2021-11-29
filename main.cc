@@ -1,7 +1,7 @@
-#include "clientState.h"
-#include "game.h"
-#include "gameView.h"
-#include "keyboard.h"
+#include "controller/keyboard.h"
+#include "model/game.h"
+#include "state/clientState.h"
+#include "view/gameView.h"
 #include <memory>
 #include <vector>
 

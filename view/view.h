@@ -2,7 +2,7 @@
 #define VIEW_H
 
 #include <string>
-#include "line.h"
+#include "../util/line.h"
 
 using std::string;
 

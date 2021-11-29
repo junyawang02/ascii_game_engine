@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "view.h"
-#include "window.h"
+#include "../util/window.h"
 #include <string>
 
 using std::string;

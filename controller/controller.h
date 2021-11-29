@@ -1,7 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "action.h"
+#include "../util/action.h"
 
 class Controller {
     virtual Action action() = 0;

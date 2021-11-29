@@ -1,11 +1,11 @@
 #include "game.h"
 // #include "clock.h"
-#include "state.h"
-#include <memory>
+#include "../state/state.h"
+#include "../util/action.h"
 #include <iostream>
-#include "action.h"
+#include <memory>
 
-Game::Game(unique_ptr<State> s): theState{std::move(s)} {}
+Game::Game(unique_ptr<State> s) : theState{std::move(s)} {}
 
 void Game::addState(unique_ptr<State> s) {
     theState = std::move(s);
@@ -13,8 +13,8 @@ void Game::addState(unique_ptr<State> s) {
 
 void Game::loop() {
     while (playing) {
-        // updateViews();
-        // displayViews();
+        updateViews();
+        displayViews();
         if (getAction(0) == Action::UP)
             stop();
     }

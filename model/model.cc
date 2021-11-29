@@ -5,9 +5,10 @@
 #include <iostream>
 
 #include "model.h"
-#include "action.h"
-#include "gameView.h"
-#include "keyboard.h"
+#include "../controller/controller.h"
+#include "../util/action.h"
+#include "../util/line.h"
+#include "../view/view.h"
 
 using std::cout;
 using std::endl;
