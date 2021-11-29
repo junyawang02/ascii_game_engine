@@ -2,6 +2,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "model.h"
 #include "action.h"
@@ -13,7 +14,7 @@ using std::endl;
 using std::string;
 using std::vector;
 
-Model::Model(vector<View> v, vector<Controller> c): views{v}, controllers{c} {}
+Model::Model() {}
 
 void Model::addView(std::unique_ptr<View> v) {
     views.emplace_back(std::move(v));

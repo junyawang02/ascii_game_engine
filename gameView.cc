@@ -1,7 +1,8 @@
 #include "gameView.h"
 #include "window.h"
-#include <ncurses.h>
+#include "ncurses.h"
 #include <string>
+#include <iostream>
 
 using std::make_unique;
 using std::string;
@@ -13,22 +14,24 @@ GameView::GameView(Game *g) : theGame{g}, screen{make_unique<Window>(22, 80, 0, 
     setlocale(LC_ALL, "");
     initscr();
     noecho();
+    nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     curs_set(0);
-    wborder(screen->getWindow(), '|', '|', '-', '-', '+', '+', '+', '+');
+    refresh();
+    screen->drawBorder();
 }
 
-GameView::~GameView(){ endwin(); }
+GameView::~GameView() {endwin();}
 
 void GameView::update() {
-    wrefresh(screen->getWindow());
+    screen->drawBorder();
 }
 
 void GameView::update(Line line, const string &text) {
-    wmove(status->getWindow(), static_cast<int>(line), 0);
-    wclrtoeol(status->getWindow());
-    wprintw(status->getWindow(), text.c_str());
-    wrefresh(status->getWindow());
+    status->updateLine(line, text);
 }
 
-void GameView::displayView() { refresh(); }
+void GameView::displayView() {
+    screen->refreshWin();
+    status->refreshWin();
+}

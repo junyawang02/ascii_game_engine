@@ -11,13 +11,16 @@ using std::vector;
 
 class Game : public Model {
     // unique_ptr<Clock> theClock;
+    bool playing;
     unique_ptr<State> theState;
+
+    void loop();
 
 protected:
     void addState(unique_ptr<State> s);
 
 public:
-    Game(vector<View> v, vector<Controller> c, unique_ptr<State> s);
+    Game(unique_ptr<State> s);
     void go();
     void stop();
 };

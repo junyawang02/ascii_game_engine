@@ -19,13 +19,13 @@ class Model {
     vector<unique_ptr<Controller>> controllers;
 
 protected:
-    void addView(unique_ptr<View> v);
-    void addController(unique_ptr<Controller> c);
     Action getAction(size_t i);
     vector<Action> getAllActions();
 
 public:
-    Model(vector<View> v, vector<Controller> c);
+    Model();
+    void addView(unique_ptr<View> v);
+    void addController(unique_ptr<Controller> c);
     virtual ~Model() = default;
     void updateViews();
     void updateViews(Line line, const string &s);
