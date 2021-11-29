@@ -2,7 +2,6 @@
 #include "window.h"
 #include "ncurses.h"
 #include <string>
-#include <iostream>
 
 using std::make_unique;
 using std::string;
