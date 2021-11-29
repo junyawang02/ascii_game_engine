@@ -1,6 +1,6 @@
 #include "gameView.h"
-#include "window.h"
 #include "ncurses.h"
+#include "window.h"
 #include <string>
 
 using std::make_unique;
@@ -20,7 +20,7 @@ GameView::GameView(Game *g) : theGame{g}, screen{make_unique<Window>(22, 80, 0, 
     screen->drawBorder();
 }
 
-GameView::~GameView() {endwin();}
+GameView::~GameView() { endwin(); }
 
 void GameView::update() {
     screen->drawBorder();
