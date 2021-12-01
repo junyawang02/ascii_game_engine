@@ -23,6 +23,7 @@ public:
     Game(unique_ptr<State> s);
     void go();
     void stop();
+    vector<pair<const Posn &, const Bitmap &>> drawList();
 };
 
 #endif

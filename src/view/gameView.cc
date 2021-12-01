@@ -1,13 +1,15 @@
 #include "gameView.h"
+#include "../sprite/bitmap.h"
+#include "../util/posn.h"
 #include "../util/window.h"
+#include "../model/game.h"
 #include "ncurses.h"
+#include <memory>
 #include <string>
 
 using std::make_unique;
 using std::string;
 using std::unique_ptr;
-
-class Game;
 
 GameView::GameView(Game *g) : View{}, theGame{g} {
     setlocale(LC_ALL, "");
@@ -25,6 +27,10 @@ GameView::GameView(Game *g) : View{}, theGame{g} {
 GameView::~GameView() { endwin(); }
 
 void GameView::update() {
+    screen->clear();
+    auto drawList = theGame->drawList();
+    for (auto &d : drawList)
+        drawBitmap(d.first, d.second);
     screen->drawBorder();
 }
 
@@ -35,4 +41,11 @@ void GameView::update(Line line, const string &text) {
 void GameView::displayView() {
     screen->refreshWin();
     status->refreshWin();
+}
+
+void GameView::drawBitmap(const Posn &p, const Bitmap &b) {
+    for (auto cell : b.getBitmap()) {
+        Posn loc = p + cell.p;
+        screen->drawChar(loc, cell.c);
+    }
 }

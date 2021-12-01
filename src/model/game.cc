@@ -33,3 +33,5 @@ void Game::go() {
 void Game::stop() {
     playing = false;
 }
+
+vector<pair<const Posn &, const Bitmap &>> Game::drawList() { return theState->drawList(); }

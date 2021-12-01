@@ -1,11 +1,12 @@
 #ifndef GAMEVIEW_H
 #define GAMEVIEW_H
 
-#include <memory>
-
-#include "view.h"
+#include "../sprite/bitmap.h"
+#include "../util/posn.h"
 #include "../util/window.h"
+#include "view.h"
 #include <string>
+#include <memory>
 
 using std::string;
 using std::unique_ptr;
@@ -23,6 +24,7 @@ public:
     void update() override;
     void update(Line line, const string &text) override;
     void displayView() override;
+    void drawBitmap(const Posn &p, const Bitmap &b);
 };
 
 #endif

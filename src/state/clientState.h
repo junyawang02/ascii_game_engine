@@ -4,8 +4,8 @@
 #include "state.h"
 
 class ClientState : public State {
-    void doCreate();
-    void doOnTick();
+    void doCreate() override;
+    void doOnTick() override;
 };
 
 #endif
