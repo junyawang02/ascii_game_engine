@@ -10,10 +10,14 @@ using std::unique_ptr;
 using std::vector;
 
 void State::create() {
+    for (auto &e : entities)
+        e->create();
     doCreate();
 }
 
 void State::onTick() {
+    for (auto &e : entities)
+        e->onTick();
     doOnTick();
 }
 

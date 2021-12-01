@@ -1,23 +1,14 @@
 #include "game.h"
-// #include "clock.h"
+#include "../clock/clock.h"
 #include "../state/state.h"
 #include "../util/action.h"
 #include <iostream>
 #include <memory>
 
-Game::Game(unique_ptr<State> s) : theState{std::move(s)} {}
+Game::Game(unique_ptr<State> s) : theClock{Clock{}}, theState{std::move(s)} {}
 
 void Game::addState(unique_ptr<State> s) {
     theState = std::move(s);
-}
-
-void Game::loop() {
-    while (playing) {
-        updateViews();
-        displayViews();
-        if (getAction(0) == Action::UP)
-            stop();
-    }
 }
 
 void Game::go() {
@@ -27,7 +18,16 @@ void Game::go() {
     playing = true;
     updateViews();
     displayViews();
-    loop();
+
+    while (playing) {
+        if (theClock.tick()) {
+            updateViews();
+            displayViews();
+            theState->onTick();
+            if (getAction(0) == Action::UP)
+                stop();
+        }
+    }
 }
 
 void Game::stop() {

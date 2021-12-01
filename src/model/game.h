@@ -1,20 +1,18 @@
 #ifndef GAME_H
 #define GAME_H
 
-// #include "clock.h"
-#include "model.h"
+#include "../clock/clock.h"
 #include "../state/state.h"
+#include "model.h"
 #include <memory>
 
 using std::unique_ptr;
 using std::vector;
 
 class Game : public Model {
-    // unique_ptr<Clock> theClock;
-    bool playing;
+    Clock theClock;
     unique_ptr<State> theState;
-
-    void loop();
+    bool playing;
 
 protected:
     void addState(unique_ptr<State> s);

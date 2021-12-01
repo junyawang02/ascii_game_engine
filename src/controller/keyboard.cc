@@ -21,14 +21,9 @@ Keyboard::Keyboard(): mapping{defaultMap} {}
 Keyboard::Keyboard(map<int, Action> mapping): mapping{mapping} {}
 
 Action Keyboard::action() {
-    int n;
-    while ((n = getch()) == ERR)
-        continue;
-
-    if (mapping.find(n) != mapping.end()) {
-        return mapping[n];
-    }
-    return Action::INVALID;
+    int c = getch();
+	flushinp();
+	return mapping[c];
 }
 
 void Keyboard::remap(int oldCmd, int newCmd) {
