@@ -36,7 +36,7 @@ const Bitmap &Entity::nextForm() const { return spr->nextFrame(); }
 
 void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
 
-const Posn Entity::moveVelocity() const { return mvt->getVelocity(); }
+const Posn Entity::moveVelocity() const { return mvt->getVelocity(pos); }
 
 void Entity::create() { doCreate(); }
 

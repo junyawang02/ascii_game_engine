@@ -10,7 +10,7 @@ using std::unique_ptr;
 
 class Linear : public MovementDecorator {
     Posn vel;
-    Posn velocity() override;
+    Posn velocity(const Posn &pos) override;
 
 public:
     Linear(int x, int y, unique_ptr<Movement> c);

@@ -20,7 +20,7 @@ void ClientState::doCreate() {
     addEntity(3, make_unique<ClientEntity>(0, 0, make_unique<Still>(Bitmap{'m'}), make_unique<Linear>(6, 1, make_unique<Inert>())));
     addEntity(0, make_unique<ClientEntity>(2, 5, make_unique<Still>(Bitmap{10, 5, 'w'}), make_unique<Inert>()));
     addEntity(1, make_unique<ClientEntity>(40, 10, make_unique<Still>(Bitmap{vector<Cell>{{0, 0, 'S'}, {0, 1, 's'}, {1, 1, 's'}, {2, 1, 's'}}}), make_unique<Inert>()));
-    addEntity(2, make_unique<ClientEntity>(60, 10, make_unique<Animated>(vector<Bitmap>{Bitmap{'c'}, Bitmap{'C'}, Bitmap{5, 5, 'm'}}), make_unique<Linear>(-1, 0, make_unique<Gravitate>(UP, 2, make_unique<Inert>()))));
+    addEntity(2, make_unique<ClientEntity>(60, 10, make_unique<Animated>(vector<Bitmap>{Bitmap{'c'}, Bitmap{'C'}, Bitmap{5, 5, 'm'}}), make_unique<Gravitate>(UP, 2, make_unique<Linear>(-1, -1, make_unique<Inert>()))));
 }
 
 void ClientState::doOnTick() { return; }

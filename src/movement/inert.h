@@ -5,7 +5,7 @@
 #include "../util/posn.h"
 
 class Inert : public Movement {
-    Posn velocity() override;
+    Posn velocity(const Posn &pos) override;
 };
 
 #endif

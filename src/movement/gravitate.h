@@ -13,7 +13,7 @@ enum Side { UP, RIGHT, DOWN, LEFT };
 class Gravitate : public MovementDecorator {
     Side side;
     int speed;
-    Posn velocity() override;
+    Posn velocity(const Posn &pos) override;
 
 public:
     Gravitate(Side s, int sp, unique_ptr<Movement> c);

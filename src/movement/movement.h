@@ -4,10 +4,10 @@
 #include "../util/posn.h"
 
 class Movement {
-    virtual Posn velocity() = 0;
+    virtual Posn velocity(const Posn &pos) = 0;
 public:
     virtual ~Movement() = default;
-    Posn getVelocity();
+    Posn getVelocity(const Posn &pos);
 };
 
 #endif

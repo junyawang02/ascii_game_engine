@@ -8,4 +8,4 @@ using std::unique_ptr;
 
 Linear::Linear(int x, int y, unique_ptr<Movement> c) : MovementDecorator{std::move(c)}, vel{Posn{x, y}} {}
 
-Posn Linear::velocity() { return vel + component->getVelocity(); }
+Posn Linear::velocity(const Posn &pos) { return vel + component->getVelocity(pos); }
