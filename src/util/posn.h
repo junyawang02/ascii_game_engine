@@ -1,8 +1,7 @@
 #ifndef POSN_H
 #define POSN_H
 
-class Posn {
-public:
+struct Posn {
     int x;
     int y;
     Posn(int x, int y);

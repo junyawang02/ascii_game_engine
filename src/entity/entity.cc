@@ -1,5 +1,5 @@
 #include "entity.h"
-
+#include "../movement/movement.h"
 #include "../sprite/bitmap.h"
 #include "../sprite/sprite.h"
 #include "../util/posn.h"
@@ -7,27 +7,37 @@
 
 using std::unique_ptr;
 
-Entity::Entity(int x, int y, unique_ptr<Sprite> s) : pos{Posn{x,y}}, theSprite{std::move(s)} {}
+Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{std::move(m)} {}
 
-const Bitmap &Entity::spriteFrame() const {
-    return theSprite->getFrame();
+void Entity::decrementCount() { 
+    if (countdown == 0)
+        flagDestroy();
+    --countdown; 
 }
 
-const Bitmap &Entity::nextForm() const {
-    return theSprite->nextFrame();
+void Entity::resetCount() { countdown = 5; }
+
+void Entity::flagDestroy() { destroy = true; }
+
+bool Entity::getDestroy() { return destroy; }
+
+Posn &Entity::getPos() { return pos; }
+
+void Entity::setPos(int x, int y) {
+    pos.x = x;
+    pos.y = y;
 }
 
-void Entity::setSprite(unique_ptr<Sprite> spr) {
-    theSprite = std::move(spr);
-}
+void Entity::setSprite(unique_ptr<Sprite> s) { spr = std::move(s); }
+
+const Bitmap &Entity::spriteFrame() const { return spr->getFrame(); }
+
+const Bitmap &Entity::nextForm() const { return spr->nextFrame(); }
+
+void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
+
+const Posn Entity::moveVelocity() const { return mvt->getVelocity(); }
 
 void Entity::create() { doCreate(); }
 
 void Entity::onTick() { doOnTick(); }
-
-Posn &Entity::getPos() { return pos; }
-
-void Entity::setPos(int x, int y) { 
-    pos.x = x;
-    pos.y = y;
-}

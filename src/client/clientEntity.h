@@ -3,7 +3,7 @@
 
 #include "../sprite/sprite.h"
 #include "../util/posn.h"
-#include "entity.h"
+#include "../entity/entity.h"
 #include <memory>
 
 using std::unique_ptr;
@@ -13,7 +13,7 @@ class ClientEntity : public Entity {
     void doOnTick() override;
 
 public:
-    ClientEntity(int x, int y, unique_ptr<Sprite> s);
+    ClientEntity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m);
 };
 
 #endif
