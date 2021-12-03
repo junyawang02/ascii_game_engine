@@ -2,6 +2,7 @@
 #include "../movement/inert.h"
 #include "../movement/linear.h"
 #include "../movement/gravitate.h"
+#include "../movement/follow.h"
 #include "../physics/physics.h"
 #include "../sprite/animated.h"
 #include "../sprite/bitmap.h"
@@ -16,9 +17,12 @@ using std::vector;
 ClientState::ClientState(unique_ptr<Physics> p) : State{std::move(p)} {}
 
 void ClientState::doCreate() {
-    addEntity(1, make_unique<ClientEntity>(1, 1, make_unique<Still>(Bitmap{'c'}), make_unique<Linear>(1, 0, make_unique<Inert>())));
+    unique_ptr<Entity> m = make_unique<ClientEntity>(1, 1, make_unique<Still>(Bitmap{'c'}), make_unique<Linear>(1, 1, make_unique<Inert>()));
     addEntity(3, make_unique<ClientEntity>(0, 0, make_unique<Still>(Bitmap{'m'}), make_unique<Linear>(6, 1, make_unique<Inert>())));
-    addEntity(0, make_unique<ClientEntity>(2, 5, make_unique<Still>(Bitmap{10, 5, 'w'}), make_unique<Inert>()));
+    unique_ptr<Entity> e = make_unique<ClientEntity>(50, 5, make_unique<Still>(Bitmap{10, 5, 'w'}), make_unique<Inert>());
+    addEntity(0, make_unique<ClientEntity>(2, 5, make_unique<Still>(Bitmap{'g'}), make_unique<Follow>(m.get(), 4, make_unique<Inert>())));
+    addEntity(0, std::move(e));
+    addEntity(1, std::move(m));
     addEntity(1, make_unique<ClientEntity>(40, 10, make_unique<Still>(Bitmap{vector<Cell>{{0, 0, 'S'}, {0, 1, 's'}, {1, 1, 's'}, {2, 1, 's'}}}), make_unique<Inert>()));
     addEntity(2, make_unique<ClientEntity>(60, 10, make_unique<Animated>(vector<Bitmap>{Bitmap{'c'}, Bitmap{'C'}, Bitmap{5, 5, 'm'}}), make_unique<Gravitate>(UP, 2, make_unique<Linear>(-1, -1, make_unique<Inert>()))));
 }
