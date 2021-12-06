@@ -1,4 +1,6 @@
 #include "inert.h"
 #include "../util/posn.h"
 
-Posn Inert::velocity(const Posn &pos) { return Posn{0, 0}; }
+class Entity;
+
+Posn Inert::velocity(const Entity &e) { return Posn{0, 0}; }

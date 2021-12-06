@@ -1,4 +1,5 @@
 #include "gravitate.h"
+#include "../entity/entity.h"
 #include "../util/posn.h"
 #include "movement.h"
 #include "movementDecorator.h"
@@ -6,8 +7,9 @@
 
 Gravitate::Gravitate(Side s, int sp, unique_ptr<Movement> c) : MovementDecorator{std::move(c)}, side{s}, speed{sp} {}
 
-Posn Gravitate::velocity(const Posn &pos) {
-    Posn nextPos = pos + component->getVelocity(pos);
+Posn Gravitate::velocity(const Entity &e) {
+    Posn pos = e.getPos();
+    Posn nextPos = pos + component->getVelocity(e);
     Posn vel = Posn{0, 0};
     switch (side) {
     case UP: {
@@ -50,5 +52,5 @@ Posn Gravitate::velocity(const Posn &pos) {
         break; // should not be reached
     }
     }
-    return vel + component->getVelocity(pos);
+    return vel + component->getVelocity(e);
 }

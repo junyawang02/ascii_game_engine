@@ -5,4 +5,6 @@
 
 using std::unique_ptr;
 
+class Entity;
+
 MovementDecorator::MovementDecorator(unique_ptr<Movement> c) : component {std::move(c)} {}

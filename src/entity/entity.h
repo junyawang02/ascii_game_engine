@@ -28,7 +28,8 @@ public:
     void flagDestroy();
     bool getDestroy();
 
-    Posn &getPos();
+    const Posn &getPos() const;
+    void setPos(const Posn &p);
     void setPos(int x, int y);
 
     void setSprite(unique_ptr<Sprite> s);

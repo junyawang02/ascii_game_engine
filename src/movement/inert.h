@@ -4,8 +4,10 @@
 #include "movement.h"
 #include "../util/posn.h"
 
+class Entity;
+
 class Inert : public Movement {
-    Posn velocity(const Posn &pos) override;
+    Posn velocity(const Entity &e) override;
 };
 
 #endif

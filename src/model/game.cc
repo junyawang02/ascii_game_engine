@@ -2,8 +2,11 @@
 #include "../clock/clock.h"
 #include "../state/state.h"
 #include "../util/action.h"
-#include <iostream>
 #include <memory>
+#include <vector>
+
+using std::unique_ptr;
+using std::vector;
 
 Game::Game(unique_ptr<State> s) : theClock{Clock{}}, theState{std::move(s)} {}
 
@@ -21,10 +24,11 @@ void Game::go() {
 
     while (playing) {
         if (theClock.tick()) {
+            vector<Action> inputs = getAllActions();
             updateViews();
             displayViews();
             theState->onTick();
-            if (getAction(0) == Action::UP)
+            if (inputs[0] == Action::UP)
                 stop();
         }
     }

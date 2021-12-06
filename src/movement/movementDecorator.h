@@ -7,6 +7,8 @@
 
 using std::unique_ptr;
 
+class Entity;
+
 class MovementDecorator : public Movement {
 protected:
     unique_ptr<Movement> component;

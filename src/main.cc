@@ -18,5 +18,6 @@ int main() {
     unique_ptr<Game> g = make_unique<Game>(std::move(s));
     g->addController(make_unique<Keyboard>());
     g->addView(make_unique<GameView>(g.get()));
+    g->addView(make_unique<GameView>(g.get()));
     g->go();
 }

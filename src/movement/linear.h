@@ -8,9 +8,11 @@
 
 using std::unique_ptr;
 
+class Entity;
+
 class Linear : public MovementDecorator {
     Posn vel;
-    Posn velocity(const Posn &pos) override;
+    Posn velocity(const Entity &e) override;
 
 public:
     Linear(int x, int y, unique_ptr<Movement> c);

@@ -10,7 +10,8 @@ using std::unique_ptr;
 
 Follow::Follow(Entity *ent, int s, unique_ptr<Movement> c): MovementDecorator{std::move(c)}, leader{ent}, speed{s} {}
 
-Posn Follow::velocity(const Posn &pos) {
+Posn Follow::velocity(const Entity &e) {
+    Posn pos = e.getPos();
     Posn lPos = leader->getPos();
     int xTiles = (speed % 2 == 0)? speed / 2 : speed / 2 + 1; // alloted tiles to move in x direction
     int yTiles = speed / 2;

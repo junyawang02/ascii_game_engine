@@ -6,6 +6,8 @@
 
 using std::unique_ptr;
 
+class Entity;
+
 Linear::Linear(int x, int y, unique_ptr<Movement> c) : MovementDecorator{std::move(c)}, vel{Posn{x, y}} {}
 
-Posn Linear::velocity(const Posn &pos) { return vel + component->getVelocity(pos); }
+Posn Linear::velocity(const Entity &e) { return vel + component->getVelocity(e); }

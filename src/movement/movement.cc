@@ -1,4 +1,6 @@
 #include "movement.h"
 #include "../util/posn.h"
 
-Posn Movement::getVelocity(const Posn &pos) { return velocity(pos); }
+class Entity;
+
+Posn Movement::getVelocity(const Entity &e) { return velocity(e); }

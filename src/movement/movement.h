@@ -3,11 +3,13 @@
 
 #include "../util/posn.h"
 
+class Entity;
+
 class Movement {
-    virtual Posn velocity(const Posn &pos) = 0;
+    virtual Posn velocity(const Entity &e) = 0;
 public:
     virtual ~Movement() = default;
-    Posn getVelocity(const Posn &pos);
+    Posn getVelocity(const Entity &e);
 };
 
 #endif

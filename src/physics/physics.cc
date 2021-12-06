@@ -26,7 +26,7 @@ void Physics::setBorder(unique_ptr<Border> b) { bor = std::move(b); }
 void Physics::step(map<int, list<unique_ptr<Entity>>> &entities) {
     for (auto &entry : entities)
         for (auto &entity : entry.second) {
-            entity->getPos() += entity->moveVelocity();
+            entity->setPos(entity->getPos() + entity->moveVelocity());
             bor->borderStep(entity.get());
         }
 }

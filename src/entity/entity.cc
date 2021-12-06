@@ -21,7 +21,11 @@ void Entity::flagDestroy() { destroy = true; }
 
 bool Entity::getDestroy() { return destroy; }
 
-Posn &Entity::getPos() { return pos; }
+const Posn &Entity::getPos() const { return pos; }
+
+void Entity::setPos(const Posn &p) {
+    pos = p;
+}
 
 void Entity::setPos(int x, int y) {
     pos.x = x;
@@ -36,7 +40,7 @@ const Bitmap &Entity::nextForm() const { return spr->nextFrame(); }
 
 void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
 
-const Posn Entity::moveVelocity() const { return mvt->getVelocity(pos); }
+const Posn Entity::moveVelocity() const { return mvt->getVelocity(*this); }
 
 void Entity::create() { doCreate(); }
 
