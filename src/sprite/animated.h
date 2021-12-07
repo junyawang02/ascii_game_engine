@@ -11,7 +11,7 @@ class Animated: public Sprite {
     vector<Bitmap> bmaps;
     size_t curFrame = 0;
 
-    const Bitmap &doGetFrame() override;
+    const Bitmap &doGetFrame() const override;
     const Bitmap &doNextFrame() override;
 
 public:

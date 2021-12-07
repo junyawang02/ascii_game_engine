@@ -3,7 +3,7 @@
 
 Still::Still(Bitmap b) : bmap{b} {}
 
-const Bitmap &Still::doGetFrame() {
+const Bitmap &Still::doGetFrame() const {
     return bmap;
 }
 

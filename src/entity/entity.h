@@ -38,6 +38,7 @@ public:
     void setSprite(unique_ptr<Sprite> s);
     const Bitmap &spriteFrame() const;
     const Bitmap &nextForm() const;
+    const vector<int> &dimensions() const;
 
     const vector<Action> &getActions() const;
     void setActions(const vector<Action> &inputs);

@@ -41,6 +41,8 @@ const Bitmap &Entity::spriteFrame() const { return spr->getFrame(); }
 
 const Bitmap &Entity::nextForm() const { return spr->nextFrame(); }
 
+const vector<int> &Entity::dimensions() const { return spriteFrame().getDimensions(); }
+
 const vector<Action> &Entity::getActions() const { return acts; }
 
 void Entity::setActions(const vector<Action> &inputs) {

@@ -6,7 +6,7 @@
 
 class Still : public Sprite {
     Bitmap bmap;
-    const Bitmap &doGetFrame() override;
+    const Bitmap &doGetFrame() const override;
     const Bitmap &doNextFrame() override;
 
 public:

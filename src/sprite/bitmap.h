@@ -14,12 +14,14 @@ struct Cell {
 
 class Bitmap {
     vector<Cell> theBitmap;
+    vector<int> dimensions;
 
 public:
     Bitmap(char c);
     Bitmap(int height, int width, char c);
     Bitmap(vector<Cell> bmap);
     const vector<Cell> &getBitmap() const;
+    const vector<int> &getDimensions() const;
 };
 
 #endif
