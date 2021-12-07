@@ -35,6 +35,10 @@ void Entity::setPos(int x, int y) {
     pos.y = y;
 }
 
+void Entity::addX(int n) { pos.x += n; }
+
+void Entity::addY(int n) { pos.y += n; }
+
 void Entity::setSprite(unique_ptr<Sprite> s) { spr = std::move(s); }
 
 const Bitmap &Entity::spriteFrame() const { return spr->getFrame(); }

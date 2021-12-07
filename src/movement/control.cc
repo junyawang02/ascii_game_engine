@@ -16,8 +16,7 @@ const map<Action, Posn> defaultMap{
     {Action::UP, Posn{0, -1}},
     {Action::DOWN, Posn{0, 1}},
     {Action::RIGHT, Posn{1, 0}},
-    {Action::LEFT, Posn{-1, 0}}
-};
+    {Action::LEFT, Posn{-1, 0}}};
 
 Control::Control(vector<size_t> con, map<Action, Posn> m, unique_ptr<Movement> c) : MovementDecorator{std::move(c)}, controlNums{con}, moves{m} {}
 

@@ -34,6 +34,8 @@ public:
     const Posn &getPos() const;
     void setPos(const Posn &p);
     void setPos(int x, int y);
+    void addX(int n);
+    void addY(int n);
 
     void setSprite(unique_ptr<Sprite> s);
     const Bitmap &spriteFrame() const;

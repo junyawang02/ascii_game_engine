@@ -16,19 +16,25 @@ using std::vector;
 State::State(unique_ptr<Physics> p) : phys{std::move(p)} {}
 
 void State::create() {
-    for (auto &entry : entities)
-        for (auto &entity : entry.second)
+    for (auto &level : entities)
+        for (auto &entity : level.second)
             entity->create();
     doCreate();
 }
 
 void State::onTick() {
-    phys->step(entities);
-    for (auto &entry : entities)
-        for (auto it = entry.second.begin(); it != entry.second.end(); ++it) {
+    for (auto &level : entities) {
+        list<Entity *> entityList;
+        for (auto &entity : level.second) {
+            entityList.push_back(entity.get());
+        }
+        phys->step(entityList);
+    }
+    for (auto &level : entities)
+        for (auto it = level.second.begin(); it != level.second.end(); ++it) {
             (*it)->onTick();
             if ((*it)->getDestroy())
-                it = entry.second.erase(it);
+                it = level.second.erase(it);
         }
     doOnTick();
 }
@@ -38,15 +44,15 @@ void State::addEntity(int height, unique_ptr<Entity> e) {
 }
 
 void State::updateActions(const vector<Action> &inputs) {
-    for (auto &entry : entities)
-        for (auto &entity : entry.second)
+    for (auto &level : entities)
+        for (auto &entity : level.second)
             entity->setActions(inputs);
 }
 
 vector<pair<const Posn &, const Bitmap &>> State::drawList() {
     vector<pair<const Posn &, const Bitmap &>> v;
-    for (auto &entry : entities)
-        for (auto &entity : entry.second)
+    for (auto &level : entities)
+        for (auto &entity : level.second)
             v.push_back(pair<const Posn &, const Bitmap &>{entity->getPos(), entity->spriteFrame()});
     return v;
 }

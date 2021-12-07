@@ -4,14 +4,15 @@
 #include "border.h"
 // #include "solidBorder.h"
 #include "viewBorder.h"
+#include <list>
 #include <map>
 #include <memory>
-#include <list>
+#include <cmath>
 
+using std::list;
 using std::make_unique;
 using std::map;
 using std::unique_ptr;
-using std::list;
 
 // Physsics::Physics(bool solid) : bor{solid ? make_unique<SolidBorder>() : make_uniqe<ViewBorder>()} {}
 
@@ -23,10 +24,22 @@ Physics::Physics(unique_ptr<Border> b) : bor{std::move(b)} {}
 
 void Physics::setBorder(unique_ptr<Border> b) { bor = std::move(b); }
 
-void Physics::step(map<int, list<unique_ptr<Entity>>> &entities) {
-    for (auto &entry : entities)
-        for (auto &entity : entry.second) {
-            entity->setPos(entity->getPos() + entity->moveVelocity());
-            bor->borderStep(entity.get());
-        }
+void Physics::stepHelp(Entity *ent, Posn vel, list<Entity *> &others) {
+    int x = vel.x;
+    int y = vel.y;
+    while (x != 0) {
+        ent->addX(x / abs(x)); // 1 step in the pos/neg direction
+        x -= x / abs(x); // 1 step less to move
+    }
+    while (y != 0) {
+        ent->addY(y / abs(y));
+        y -= y / abs(y);
+    }
+}
+
+void Physics::step(list<Entity *> &entities) {
+    for (auto &entity : entities) {
+        stepHelp(entity, entity->moveVelocity(), entities);
+        bor->borderStep(entity);
+    }
 }

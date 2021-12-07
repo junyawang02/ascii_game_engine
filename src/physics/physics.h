@@ -19,7 +19,8 @@ public:
     Physics(unique_ptr<Border> b);
     void solidBorder(bool solid);
     void setBorder(unique_ptr<Border> b);
-    void step(map<int, list<unique_ptr<Entity>>> & entities);
+    void stepHelp(Entity *ent, Posn vel, list<Entity *> &others);
+    void step(list<Entity *> &entities);
 };
 
 #endif
