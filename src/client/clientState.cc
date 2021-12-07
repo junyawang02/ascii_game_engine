@@ -1,17 +1,21 @@
 #include "clientState.h"
+#include "../movement/control.h"
+#include "../movement/follow.h"
+#include "../movement/gravitate.h"
 #include "../movement/inert.h"
 #include "../movement/linear.h"
-#include "../movement/gravitate.h"
-#include "../movement/follow.h"
 #include "../physics/physics.h"
 #include "../sprite/animated.h"
 #include "../sprite/bitmap.h"
 #include "../sprite/still.h"
+#include "../util/action.h"
 #include "clientEntity.h"
+#include <map>
 #include <memory>
 #include <vector>
 
 using std::make_unique;
+using std::map;
 using std::vector;
 
 ClientState::ClientState(unique_ptr<Physics> p) : State{std::move(p)} {}
@@ -24,7 +28,8 @@ void ClientState::doCreate() {
     addEntity(0, std::move(e));
     addEntity(1, std::move(m));
     addEntity(1, make_unique<ClientEntity>(40, 10, make_unique<Still>(Bitmap{vector<Cell>{{0, 0, 'S'}, {0, 1, 's'}, {1, 1, 's'}, {2, 1, 's'}}}), make_unique<Inert>()));
-    addEntity(2, make_unique<ClientEntity>(60, 10, make_unique<Animated>(vector<Bitmap>{Bitmap{'c'}, Bitmap{'C'}, Bitmap{5, 5, 'm'}}), make_unique<Gravitate>(UP, 2, make_unique<Linear>(-1, -1, make_unique<Inert>()))));
+    addEntity(2, make_unique<ClientEntity>(60, 10, make_unique<Animated>(vector<Bitmap>{Bitmap{'c'}, Bitmap{'C'}, Bitmap{5, 5, 'm'}}), make_unique<Gravitate>(U, 2, make_unique<Linear>(-1, -1, make_unique<Inert>()))));
+    addEntity(3, make_unique<ClientEntity>(30, 15, make_unique<Still>(Bitmap{'p'}), make_unique<Control>(0, make_unique<Inert>())));
 }
 
 void ClientState::doOnTick() { return; }

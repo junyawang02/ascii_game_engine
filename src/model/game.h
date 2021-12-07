@@ -10,8 +10,8 @@ using std::unique_ptr;
 using std::vector;
 
 class Game : public Model {
-    Clock theClock;
-    unique_ptr<State> theState;
+    Clock clock;
+    unique_ptr<State> state;
     bool playing;
 
 protected:

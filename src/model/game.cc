@@ -8,26 +8,27 @@
 using std::unique_ptr;
 using std::vector;
 
-Game::Game(unique_ptr<State> s) : theClock{Clock{}}, theState{std::move(s)} {}
+Game::Game(unique_ptr<State> s) : clock{Clock{}}, state{std::move(s)} {}
 
 void Game::addState(unique_ptr<State> s) {
-    theState = std::move(s);
+    state = std::move(s);
 }
 
 void Game::go() {
-    if (theState == nullptr)
+    if (state == nullptr)
         return;
-    theState->create();
+    state->create();
     playing = true;
     updateViews();
     displayViews();
 
     while (playing) {
-        if (theClock.tick()) {
+        if (clock.tick()) {
             vector<Action> inputs = getAllActions();
+            state->updateActions(inputs);
             updateViews();
             displayViews();
-            theState->onTick();
+            state->onTick();
             if (inputs[0] == Action::UP)
                 stop();
         }
@@ -38,4 +39,4 @@ void Game::stop() {
     playing = false;
 }
 
-vector<pair<const Posn &, const Bitmap &>> Game::drawList() { return theState->drawList(); }
+vector<pair<const Posn &, const Bitmap &>> Game::drawList() { return state->drawList(); }

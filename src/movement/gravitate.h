@@ -8,7 +8,7 @@
 
 using std::unique_ptr;
 
-enum Side { UP, RIGHT, DOWN, LEFT };
+enum Side { U, R, D, L };
 
 class Entity;
 

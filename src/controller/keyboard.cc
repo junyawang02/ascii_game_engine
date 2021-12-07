@@ -7,13 +7,13 @@ using std::map;
 
 const map<int, Action> defaultMap {
     {'w', Action::UP},
-    {'d', Action::DOWN},
-    {'s', Action::LEFT},
-    {'a', Action::RIGHT},
+    {'s', Action::DOWN},
+    {'a', Action::LEFT},
+    {'d', Action::RIGHT},
     {KEY_UP, Action::UP},
-    {KEY_RIGHT, Action::DOWN},
-    {KEY_DOWN, Action::LEFT},
-    {KEY_LEFT, Action::RIGHT}
+    {KEY_DOWN, Action::DOWN},
+    {KEY_LEFT, Action::LEFT},
+    {KEY_RIGHT, Action::RIGHT}
 };
 
 Keyboard::Keyboard(): mapping{defaultMap} {}

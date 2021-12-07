@@ -9,6 +9,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include "../util/action.h"
 
 using std::list;
 using std::map;
@@ -28,6 +29,7 @@ public:
     void create();
     void onTick();
     void addEntity(int height, unique_ptr<Entity> e);
+    void updateActions(const vector<Action> &inputs);
     vector<pair<const Posn &, const Bitmap &>> drawList();
 };
 

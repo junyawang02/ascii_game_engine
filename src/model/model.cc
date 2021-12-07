@@ -2,7 +2,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "model.h"
 #include "../controller/controller.h"
@@ -10,8 +9,6 @@
 #include "../util/line.h"
 #include "../view/view.h"
 
-using std::cout;
-using std::endl;
 using std::string;
 using std::vector;
 
@@ -26,11 +23,8 @@ void Model::addController(std::unique_ptr<Controller> c) {
 }
 
 Action Model::getAction(size_t i) {
-    if (i >= controllers.size()) {
-        const string warn{"Index of controller is out of bounds."};
-        cout << warn << endl;
+    if (i >= controllers.size())
         return Action::INVALID;
-    }
     return controllers[i]->getAction();
 }
 

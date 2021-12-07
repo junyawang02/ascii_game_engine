@@ -4,6 +4,7 @@
 struct Posn {
     int x;
     int y;
+    Posn();
     Posn(int x, int y);
     Posn(const Posn &other);
     Posn &operator+=(const Posn &other);

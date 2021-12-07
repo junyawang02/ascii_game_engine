@@ -5,9 +5,11 @@
 #include "../sprite/bitmap.h"
 #include "../sprite/sprite.h"
 #include "../util/posn.h"
-#include <memory>
+#include "../util/action.h"
+#include <vector>
 
 using std::unique_ptr;
+using std::vector;
 
 class Entity {
     int countdown;
@@ -15,6 +17,7 @@ class Entity {
     Posn pos;
     unique_ptr<Sprite> spr;
     unique_ptr<Movement> mvt;
+    vector<Action> acts = vector<Action>{Action::INVALID};
 
     virtual void doCreate() = 0;
     virtual void doOnTick() = 0;
@@ -35,6 +38,9 @@ public:
     void setSprite(unique_ptr<Sprite> s);
     const Bitmap &spriteFrame() const;
     const Bitmap &nextForm() const;
+
+    const vector<Action> &getActions() const;
+    void setActions(const vector<Action> &inputs);
 
     void setMovement(unique_ptr<Movement> m);
     const Posn moveVelocity() const;

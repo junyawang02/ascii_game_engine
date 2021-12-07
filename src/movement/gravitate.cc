@@ -12,7 +12,7 @@ Posn Gravitate::velocity(const Entity &e) {
     Posn nextPos = pos + component->getVelocity(e);
     Posn vel = Posn{0, 0};
     switch (side) {
-    case UP: {
+    case U: {
         if (nextPos.y - speed >= 1)
             vel.y = -speed;
         else if (nextPos.y + speed <= 1)
@@ -21,7 +21,7 @@ Posn Gravitate::velocity(const Entity &e) {
             vel.y = 1 - nextPos.y;
         break;
     }
-    case DOWN: {
+    case D: {
         if (nextPos.y + speed <= 20)
             vel.y = speed;
         else if (nextPos.y + speed >= 20)
@@ -30,7 +30,7 @@ Posn Gravitate::velocity(const Entity &e) {
             vel.y = 20 - nextPos.y;
         break;
     }
-    case RIGHT: {
+    case R: {
         if (nextPos.x + speed <= 78)
             vel.x = speed;
         else if (nextPos.x + speed >= 78)
@@ -39,7 +39,7 @@ Posn Gravitate::velocity(const Entity &e) {
             vel.x = 78 - nextPos.x;
         break;
     }
-    case LEFT: {
+    case L: {
         if (nextPos.x + speed >= 1)
             vel.x = -speed;
         else if (nextPos.x + speed <= 1)
