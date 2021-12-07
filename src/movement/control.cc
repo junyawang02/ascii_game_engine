@@ -32,7 +32,9 @@ Posn Control::velocity(const Entity &e) {
     for (auto &n : controlNums) {
         if (n < acts.size()) {
             Action a = acts[n];
-            vel += moves[a];
+            Posn future = e.getPos() + vel + moves[a];
+            if (future.x >= 1 && future.x <= 78 && future.y >= 1 && future.y <= 20)
+                vel += moves[a];
         }
     }
     return vel;
