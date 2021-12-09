@@ -4,7 +4,13 @@
 #include "../util/visitor.h"
 
 class ClientEntity;
+class Entity;
 
-using Collider = Visitor<ClientEntity>;
+class Collider : public Visitor<ClientEntity>{
+protected:
+    Entity *self;
+public:
+    Collider(Entity *s);
+};
 
 #endif

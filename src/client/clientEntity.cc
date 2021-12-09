@@ -5,7 +5,7 @@
 using std::unique_ptr;
 using std::make_unique;
 
-ClientEntity::ClientEntity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m) : Acceptor{x, y, std::move(s), std::move(m), make_unique<ClientEntityCollider>()} {}
+ClientEntity::ClientEntity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m) : Acceptor{x, y, std::move(s), std::move(m), make_unique<ClientEntityCollider>(this)} {}
 
 void ClientEntity::doCreate() { return; }
 

@@ -1,4 +1,9 @@
 #include "clientEntityCollider.h"
 #include "clientEntity.h"
 
-void ClientEntityCollider::doVisit(ClientEntity &e) { e.flagDestroy(); }
+ClientEntityCollider::ClientEntityCollider(ClientEntity *s): Collider{s} {}
+
+void ClientEntityCollider::doVisit(ClientEntity &e) { 
+    self->flagDestroy();
+    e.flagDestroy(); 
+}

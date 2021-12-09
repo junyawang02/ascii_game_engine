@@ -5,6 +5,8 @@
 
 class ClientEntityCollider: public Collider {
     void doVisit(ClientEntity &e) override;
+public:
+    ClientEntityCollider(ClientEntity *s);
 };
 
 #endif
