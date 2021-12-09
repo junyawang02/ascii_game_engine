@@ -2,8 +2,10 @@
 #include "../clock/clock.h"
 #include "../state/state.h"
 #include "../util/action.h"
+#include "../util/line.h"
 #include <memory>
 #include <vector>
+#include <string>
 
 using std::unique_ptr;
 using std::vector;
@@ -24,9 +26,11 @@ void Game::go() {
 
     while (playing) {
         if (clock.tick()) {
+            ++numTick;
             vector<Action> inputs = getAllActions();
             state->updateActions(inputs);
             updateViews();
+            // updateViews(l1, "Ticks passed:" + std::to_string(numTick));
             displayViews();
             state->onTick();
             if (inputs[0] == Action::UP)

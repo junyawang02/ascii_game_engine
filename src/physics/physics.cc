@@ -71,34 +71,31 @@ bool Physics::checkCollision(Entity *ent, Entity *other) {
     return false; // dimensions do not overlap, no collision
 }
 
-void Physics::stepHelp(Entity *ent, Posn vel, list<Entity *> &others) {
-    int x = vel.x;
-    int y = vel.y;
-    for (auto other : others) {
-        if (checkCollision(ent, other)) {
-            printw("fuck");
-            refresh();
-        }
-    }
-    while (x != 0) {
-        ent->addX(x / abs(x)); // 1 step in the pos/neg direction
-        x -= x / abs(x);       // 1 step less to move
+void Physics::stepHelp(Entity *ent, list<Entity *> &others) {
+    Posn &vel = ent->moveVelocity();
+    // for (auto other : others) {
+    //     if (checkCollision(ent, other)) {
+            
+    //     }
+    // }
+    while (vel.x != 0) {
+        ent->addX(vel.x / abs(vel.x)); // 1 step in the pos/neg direction
+        vel.x -= vel.x / abs(vel.x);       // 1 step less to move
         for (auto other : others) {
             if (checkCollision(ent, other)) {
-                printw("fuck");
-                refresh();
+                vel.x = 10;
             }
         }
     }
-    while (y != 0) {
-        ent->addY(y / abs(y));
-        y -= y / abs(y);
+    while (vel.y != 0) {
+        ent->addY(vel.y / abs(vel.y));
+        vel.y -= vel.y / abs(vel.y);
     }
 }
 
 void Physics::step(list<Entity *> &entities) {
     for (auto &entity : entities) {
-        stepHelp(entity, entity->moveVelocity(), entities);
+        stepHelp(entity, entities);
         bor->borderStep(entity);
     }
 }

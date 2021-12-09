@@ -55,7 +55,12 @@ void Entity::setActions(const vector<Action> &inputs) {
 
 void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
 
-const Posn Entity::moveVelocity() const { return mvt->getVelocity(*this); }
+Posn &Entity::moveVelocity() { 
+    vel = mvt->getVelocity(*this); 
+    return vel;
+}
+
+void Entity::setVelocity(Posn v) { vel = v; }
 
 void Entity::create() { doCreate(); }
 

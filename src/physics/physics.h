@@ -21,7 +21,7 @@ public:
     void setBorder(unique_ptr<Border> b);
     bool checkCollisionHelp(Entity *ent, Entity *other);
     bool checkCollision(Entity *ent, Entity *other);
-    void stepHelp(Entity *ent, Posn vel, list<Entity *> &others);
+    void stepHelp(Entity *ent, list<Entity *> &others);
     void step(list<Entity *> &entities);
 };
 

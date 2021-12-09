@@ -35,6 +35,7 @@ void GameView::update() {
 }
 
 void GameView::update(Line line, const string &text) {
+    status->clear();
     status->updateLine(line, text);
 }
 

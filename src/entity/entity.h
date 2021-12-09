@@ -15,6 +15,7 @@ class Entity {
     int countdown;
     bool destroy;
     Posn pos;
+    Posn vel;
     unique_ptr<Sprite> spr;
     unique_ptr<Movement> mvt;
     vector<Action> acts = vector<Action>{Action::INVALID};
@@ -46,7 +47,8 @@ public:
     void setActions(const vector<Action> &inputs);
 
     void setMovement(unique_ptr<Movement> m);
-    const Posn moveVelocity() const;
+    Posn &moveVelocity();
+    void setVelocity(Posn v);
 
     void create();
     void onTick();

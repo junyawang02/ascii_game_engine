@@ -12,6 +12,7 @@ using std::vector;
 class Game : public Model {
     Clock clock;
     unique_ptr<State> state;
+    size_t numTick;
     bool playing;
 
 protected:
