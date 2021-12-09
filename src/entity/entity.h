@@ -24,6 +24,7 @@ class Entity {
 
     virtual void doCreate() = 0;
     virtual void doOnTick() = 0;
+    virtual void doAccept(Collider &v) = 0;
 
 public:
     Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c);
@@ -49,7 +50,7 @@ public:
     void setActions(const vector<Action> &inputs);
 
     Collider &getCollider();
-    virtual void accept(Collider &v) = 0;
+    void accept(Collider &v);
 
     void setMovement(unique_ptr<Movement> m);
     Posn &moveVelocity();

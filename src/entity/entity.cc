@@ -62,6 +62,8 @@ Posn &Entity::moveVelocity() {
     return vel;
 }
 
+void Entity::accept(Collider &v) { doAccept(v); }
+
 void Entity::setVelocity(Posn v) { vel = v; }
 
 void Entity::create() { doCreate(); }

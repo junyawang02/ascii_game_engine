@@ -4,14 +4,15 @@
 template <typename...>
 class Visitor {
 public:
-    void visit();
+    void doVisit();
     virtual ~Visitor() {}
 };
 template <typename T, typename... Ts>
 class Visitor<T, Ts...> : public Visitor<Ts...> {
+    using Visitor<Ts...>::doVisit;
+    virtual void doVisit(T &b) = 0;
 public:
-    using Visitor<Ts...>::visit;
-    virtual void visit(T &b) = 0;
+    void visit(T &b) { doVisit(b); }
 };
 
 #endif

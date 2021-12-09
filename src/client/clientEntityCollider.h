@@ -4,7 +4,7 @@
 #include "collider.h"
 
 class ClientEntityCollider: public Collider {
-    void visit(ClientEntity &e) override;
+    void doVisit(ClientEntity &e) override;
 };
 
 #endif

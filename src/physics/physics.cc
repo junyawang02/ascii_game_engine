@@ -18,7 +18,7 @@ using std::map;
 using std::unique_ptr;
 using std::vector;
 
-// Physsics::Physics(bool solid) : bor{solid ? make_unique<SolidBorder>() : make_uniqe<ViewBorder>()} {}
+// Physics::Physics(bool solid) : bor{solid ? make_unique<SolidBorder>() : make_uniqe<ViewBorder>()} {}
 
 Physics::Physics(unique_ptr<Border> b) : bor{std::move(b)} {}
 
@@ -80,7 +80,7 @@ void Physics::stepHelp(Entity *ent, list<Entity *> &others) {
     }
     while (vel.x != 0) {
         ent->addX(vel.x / abs(vel.x)); // 1 step in the pos/neg direction
-        vel.x -= vel.x / abs(vel.x);       // 1 step less to move
+        vel.x -= vel.x / abs(vel.x);   // 1 step less to move
         for (auto other : others) {
             if (checkCollision(ent, other)) {
                 ent->accept(other->getCollider());
