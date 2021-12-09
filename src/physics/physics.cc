@@ -2,31 +2,19 @@
 #include "../entity/entity.h"
 #include "../sprite/bitmap.h"
 #include "../util/posn.h"
-#include "border.h"
-// #include "solidBorder.h"
-#include "viewBorder.h"
+#include "../util/border.h"
 #include <cmath>
 #include <list>
 #include <map>
-#include <memory>
-#include <ncurses.h>
 #include <vector>
 
 using std::list;
-using std::make_unique;
 using std::map;
-using std::unique_ptr;
 using std::vector;
 
-// Physics::Physics(bool solid) : bor{solid ? make_unique<SolidBorder>() : make_uniqe<ViewBorder>()} {}
+Physics::Physics(bool s) : solid{s} {}
 
-Physics::Physics(unique_ptr<Border> b) : bor{std::move(b)} {}
-
-// void Physics::solidBorder(bool solid) {
-//     bor = solid ? make_unique<SolidBorder>() : make_unique<ViewBorder>()
-// }
-
-void Physics::setBorder(unique_ptr<Border> b) { bor = std::move(b); }
+void Physics::solidBorder(bool s) { solid = s; }
 
 // iterative check through each cell of both bitmaps
 bool Physics::checkCollisionHelp(Entity *ent, Entity *other) {
@@ -78,6 +66,7 @@ void Physics::stepHelp(Entity *ent, list<Entity *> &others) {
             ent->accept(other->getCollider());
         }
     }
+    borderCollision(ent);
     while (vel.x != 0) {
         ent->addX(vel.x / abs(vel.x)); // 1 step in the pos/neg direction
         vel.x -= vel.x / abs(vel.x);   // 1 step less to move
@@ -86,16 +75,46 @@ void Physics::stepHelp(Entity *ent, list<Entity *> &others) {
                 ent->accept(other->getCollider());
             }
         }
+        borderCollision(ent);
     }
     while (vel.y != 0) {
         ent->addY(vel.y / abs(vel.y));
         vel.y -= vel.y / abs(vel.y);
+        for (auto other : others) {
+            if (checkCollision(ent, other)) {
+                ent->accept(other->getCollider());
+            }
+        }
+        borderCollision(ent);
     }
+}
+
+Border Physics::boundsCheck(Entity *e) {
+    Posn pos = e->getPos();
+    if (pos.x < 1) return Border::L;
+    if (pos.x > 78) return Border::R;
+    if (pos.y < 1) return Border::U;
+    if (pos.y > 20) return Border::D;
+    return Border::N;
+}
+
+void Physics::outOfBounds(Entity *e) {
+    if (boundsCheck(e) == Border::N) 
+        e->resetCount();
+    else
+        e->decrementCount();
+}
+
+void Physics::borderCollision(Entity *e) {
+    if (!solid) return;
+    Border collided = boundsCheck(e);
+    if (boundsCheck(e) == Border::N) return;
+    e->borderCollide(collided);
 }
 
 void Physics::step(list<Entity *> &entities) {
     for (auto &entity : entities) {
         stepHelp(entity, entities);
-        bor->borderStep(entity);
+        if (!solid) outOfBounds(entity);
     }
 }

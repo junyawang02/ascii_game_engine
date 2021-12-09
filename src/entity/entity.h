@@ -6,7 +6,9 @@
 #include "../sprite/sprite.h"
 #include "../util/posn.h"
 #include "../util/action.h"
+#include "../util/border.h"
 #include "../client/collider.h"
+#include <memory>
 #include <vector>
 
 using std::unique_ptr;
@@ -25,6 +27,7 @@ class Entity {
     virtual void doCreate() = 0;
     virtual void doOnTick() = 0;
     virtual void doAccept(Collider &v) = 0;
+    virtual void doBorderCollide(Border b);
 
 public:
     Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c);
@@ -51,6 +54,7 @@ public:
 
     Collider &getCollider();
     void accept(Collider &v);
+    void borderCollide(Border b);
 
     void setMovement(unique_ptr<Movement> m);
     Posn &moveVelocity();

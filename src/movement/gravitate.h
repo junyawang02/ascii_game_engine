@@ -2,23 +2,22 @@
 #define GRAVITATE_H
 
 #include "../util/posn.h"
+#include "../util/border.h"
 #include "movement.h"
 #include "movementDecorator.h"
 #include <memory>
 
 using std::unique_ptr;
 
-enum Side { U, R, D, L };
-
 class Entity;
 
 class Gravitate : public MovementDecorator {
-    Side side;
+    Border side;
     int speed;
     Posn velocity(const Entity &e) override;
 
 public:
-    Gravitate(Side s, int sp, unique_ptr<Movement> c);
+    Gravitate(Border s, int sp, unique_ptr<Movement> c);
 };
 
 #endif

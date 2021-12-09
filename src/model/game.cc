@@ -33,7 +33,7 @@ void Game::go() {
             // updateViews(l1, "Ticks passed:" + std::to_string(numTick));
             displayViews();
             state->onTick();
-            if (inputs[0] == Action::UP)
+            if (inputs[0] == Action::ESCAPE)
                 stop();
         }
     }

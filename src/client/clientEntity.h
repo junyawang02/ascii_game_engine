@@ -1,10 +1,11 @@
 #ifndef CLIENT_ENTITY_H
 #define CLIENT_ENTITY_H
 
-#include "../sprite/sprite.h"
-#include "../util/posn.h"
-#include "../util/acceptor.h"
 #include "../entity/entity.h"
+#include "../sprite/sprite.h"
+#include "../util/acceptor.h"
+#include "../util/border.h"
+#include "../util/posn.h"
 #include "collider.h"
 #include <memory>
 

@@ -13,7 +13,8 @@ const map<int, Action> defaultMap {
     {KEY_UP, Action::UP},
     {KEY_DOWN, Action::DOWN},
     {KEY_LEFT, Action::LEFT},
-    {KEY_RIGHT, Action::RIGHT}
+    {KEY_RIGHT, Action::RIGHT},
+    {27, Action::ESCAPE}
 };
 
 Keyboard::Keyboard(): mapping{defaultMap} {}

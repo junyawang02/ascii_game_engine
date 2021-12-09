@@ -2,20 +2,40 @@
 #include "../movement/movement.h"
 #include "../sprite/bitmap.h"
 #include "../sprite/sprite.h"
-#include "../util/posn.h"
 #include "../util/action.h"
+#include "../util/border.h"
+#include "../util/posn.h"
 #include <memory>
 #include <vector>
 
 using std::unique_ptr;
 using std::vector;
 
+void Entity::doBorderCollide(Border b) {
+    switch (b) {
+    case Border::U:
+        addY(1);
+        break;
+    case Border::D:
+        addY(-1);
+        break;
+    case Border::R:
+        addX(-1);
+        break;
+    case Border::L:
+        addX(1);
+        break;
+    default:
+        break;
+    }
+}
+
 Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{std::move(m)}, col{std::move(c)} {}
 
-void Entity::decrementCount() { 
+void Entity::decrementCount() {
     if (countdown == 0)
         flagDestroy();
-    --countdown; 
+    --countdown;
 }
 
 void Entity::resetCount() { countdown = 5; }
@@ -53,16 +73,18 @@ void Entity::setActions(const vector<Action> &inputs) {
     acts = inputs;
 }
 
-Collider &Entity::getCollider() { return *col; }
-
 void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
 
-Posn &Entity::moveVelocity() { 
-    vel = mvt->getVelocity(*this); 
+Posn &Entity::moveVelocity() {
+    vel = mvt->getVelocity(*this);
     return vel;
 }
 
+Collider &Entity::getCollider() { return *col; }
+
 void Entity::accept(Collider &v) { doAccept(v); }
+
+void Entity::borderCollide(Border b) { doBorderCollide(b); }
 
 void Entity::setVelocity(Posn v) { vel = v; }
 
