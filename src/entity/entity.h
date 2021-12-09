@@ -6,6 +6,7 @@
 #include "../sprite/sprite.h"
 #include "../util/posn.h"
 #include "../util/action.h"
+#include "../client/collider.h"
 #include <vector>
 
 using std::unique_ptr;
@@ -18,13 +19,14 @@ class Entity {
     Posn vel;
     unique_ptr<Sprite> spr;
     unique_ptr<Movement> mvt;
+    unique_ptr<Collider> col;
     vector<Action> acts = vector<Action>{Action::INVALID};
 
     virtual void doCreate() = 0;
     virtual void doOnTick() = 0;
 
 public:
-    Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m);
+    Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c);
     virtual ~Entity() = default;
 
     void decrementCount();
@@ -45,6 +47,9 @@ public:
 
     const vector<Action> &getActions() const;
     void setActions(const vector<Action> &inputs);
+
+    Collider &getCollider();
+    virtual void accept(Collider &v) = 0;
 
     void setMovement(unique_ptr<Movement> m);
     Posn &moveVelocity();

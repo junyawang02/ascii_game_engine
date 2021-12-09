@@ -3,12 +3,14 @@
 
 #include "../sprite/sprite.h"
 #include "../util/posn.h"
+#include "../util/acceptor.h"
 #include "../entity/entity.h"
+#include "collider.h"
 #include <memory>
 
 using std::unique_ptr;
 
-class ClientEntity : public Entity {
+class ClientEntity : public Acceptor<Entity, ClientEntity, Collider> {
     void doCreate() override;
     void doOnTick() override;
 

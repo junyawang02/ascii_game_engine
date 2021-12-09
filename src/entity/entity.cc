@@ -10,7 +10,7 @@
 using std::unique_ptr;
 using std::vector;
 
-Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{std::move(m)} {}
+Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{std::move(m)}, col{std::move(c)} {}
 
 void Entity::decrementCount() { 
     if (countdown == 0)
@@ -52,6 +52,8 @@ const vector<Action> &Entity::getActions() const { return acts; }
 void Entity::setActions(const vector<Action> &inputs) {
     acts = inputs;
 }
+
+Collider &Entity::getCollider() { return *col; }
 
 void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
 

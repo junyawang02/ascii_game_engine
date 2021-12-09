@@ -1,19 +1,17 @@
 #ifndef VISITOR_H
 #define VISITOR_H
 
-#include "../entity/entity.h"
-
 template <typename...>
-class Visitor : public Collider {
+class Visitor {
 public:
-    void collide();
+    void visit();
     virtual ~Visitor() {}
 };
 template <typename T, typename... Ts>
 class Visitor<T, Ts...> : public Visitor<Ts...> {
 public:
-    using Visitor<Ts...>::collide;
-    virtual void collide(T &b) = 0;
+    using Visitor<Ts...>::visit;
+    virtual void visit(T &b) = 0;
 };
 
 #endif

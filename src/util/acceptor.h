@@ -1,7 +1,7 @@
 #ifndef ACCEPTOR_H
 #define ACCEPTOR_H
 
-template<typename B, typename C, typenmae V>
+template<typename B, typename C, typename V>
 class Acceptor: public B {
 public:
     using B::B;

@@ -73,17 +73,17 @@ bool Physics::checkCollision(Entity *ent, Entity *other) {
 
 void Physics::stepHelp(Entity *ent, list<Entity *> &others) {
     Posn &vel = ent->moveVelocity();
-    // for (auto other : others) {
-    //     if (checkCollision(ent, other)) {
-            
-    //     }
-    // }
+    for (auto other : others) {
+        if (checkCollision(ent, other)) {
+            ent->accept(other->getCollider());
+        }
+    }
     while (vel.x != 0) {
         ent->addX(vel.x / abs(vel.x)); // 1 step in the pos/neg direction
         vel.x -= vel.x / abs(vel.x);       // 1 step less to move
         for (auto other : others) {
             if (checkCollision(ent, other)) {
-                vel.x = 10;
+                ent->accept(other->getCollider());
             }
         }
     }
