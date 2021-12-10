@@ -19,7 +19,8 @@ public:
     bool checkCollision(Entity *ent, Entity *other);
     void stepHelp(Entity *ent, list<Entity *> &others);
     void step(list<Entity *> &entities);
-    Border boundsCheck(Entity *e);
+    bool inBounds(Entity *e);
+    Border getBorder(Entity *e);
     void outOfBounds(Entity *e);
     void borderCollision(Entity *e);
 };

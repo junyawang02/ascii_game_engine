@@ -24,18 +24,19 @@ void State::create() {
 
 void State::onTick() {
     for (auto &level : entities) {
+        for (auto it = level.second.begin(); it != level.second.end(); ++it) {
+            (*it)->onTick();
+            if ((*it)->getDestroy())
+                it = level.second.erase(it);
+        }
+    }
+    for (auto &level : entities) {
         list<Entity *> entityList;
         for (auto &entity : level.second) {
             entityList.push_back(entity.get());
         }
         phys->step(entityList);
     }
-    for (auto &level : entities)
-        for (auto it = level.second.begin(); it != level.second.end(); ++it) {
-            (*it)->onTick();
-            if ((*it)->getDestroy())
-                it = level.second.erase(it);
-        }
     doOnTick();
 }
 
@@ -43,10 +44,21 @@ void State::addEntity(int height, unique_ptr<Entity> e) {
     entities[height].emplace_back(std::move(e));
 }
 
+void State::addEntities(int height, list<unique_ptr<Entity>> &ents) {
+    for (auto &e : ents)
+        entities[height].emplace_back(std::move(e));
+}
+
 void State::updateActions(const vector<Action> &inputs) {
     for (auto &level : entities)
         for (auto &entity : level.second)
             entity->setActions(inputs);
+}
+
+bool State::checkCollisions(Entity *e, list<Entity*> others) {
+    for (auto other: others)
+        if (phys->checkCollision(e, other) || !phys->inBounds(e)) return true;
+    return false;
 }
 
 vector<pair<const Posn &, const Bitmap &>> State::drawList() {

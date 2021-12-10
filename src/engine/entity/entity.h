@@ -7,7 +7,7 @@
 #include "../util/posn.h"
 #include "../util/action.h"
 #include "../util/border.h"
-#include "../client/collider.h"
+#include "../../config/colDecider.h"
 #include <memory>
 #include <vector>
 

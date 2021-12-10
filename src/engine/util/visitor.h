@@ -3,15 +3,18 @@
 
 template <typename...>
 class Visitor {
+	void doVisit();
 public:
-    void doVisit();
+	void visit() { doVisit(); }
     virtual ~Visitor() {}
 };
+
 template <typename T, typename... Ts>
 class Visitor<T, Ts...> : public Visitor<Ts...> {
-    using Visitor<Ts...>::doVisit;
+private:
     virtual void doVisit(T &b) = 0;
 public:
+	using Visitor<Ts...>::visit;
     void visit(T &b) { doVisit(b); }
 };
 

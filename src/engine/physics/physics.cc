@@ -89,17 +89,29 @@ void Physics::stepHelp(Entity *ent, list<Entity *> &others) {
     }
 }
 
-Border Physics::boundsCheck(Entity *e) {
+bool Physics::inBounds(Entity *e) {
+    if (getBorder(e) == Border::N) return true;
+    return false;
+}
+
+Border Physics::getBorder(Entity *e) {
+    const vector<int> &dim = e->dimensions();
     Posn pos = e->getPos();
-    if (pos.x < 1) return Border::L;
-    if (pos.x > 78) return Border::R;
-    if (pos.y < 1) return Border::U;
-    if (pos.y > 20) return Border::D;
+
+    int minX = pos.x + dim[3];
+    int maxX = pos.x + dim[2];
+    int minY = pos.y + dim[0];
+    int maxY = pos.y + dim[1];
+
+    if (minX < 1) return Border::L;
+    if (maxX > 78) return Border::R;
+    if (minY < 1) return Border::U;
+    if (maxY > 20) return Border::D;
     return Border::N;
 }
 
 void Physics::outOfBounds(Entity *e) {
-    if (boundsCheck(e) == Border::N) 
+    if (inBounds(e)) 
         e->resetCount();
     else
         e->decrementCount();
@@ -107,8 +119,8 @@ void Physics::outOfBounds(Entity *e) {
 
 void Physics::borderCollision(Entity *e) {
     if (!solid) return;
-    Border collided = boundsCheck(e);
-    if (boundsCheck(e) == Border::N) return;
+    Border collided = getBorder(e);
+    if (collided == Border::N) return;
     e->borderCollide(collided);
 }
 
