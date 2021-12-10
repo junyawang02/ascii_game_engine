@@ -2,21 +2,17 @@
 #define FOLLOW_H
 
 #include "../util/posn.h"
-#include "movement.h"
-#include "movementDecorator.h"
-#include <memory>
-
-using std::unique_ptr;
+#include "movementComponent.h"
 
 class Entity;
 
-class Follow : public MovementDecorator {
+class Follow : public MovementComponent {
     Entity *leader;
     int speed;
     Posn velocity(const Entity &e) override;
 
 public:
-    Follow(Entity *ent, int s, unique_ptr<Movement> c);
+    Follow(Entity *ent, int s);
 };
 
 #endif

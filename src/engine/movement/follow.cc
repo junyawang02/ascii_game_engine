@@ -1,14 +1,10 @@
 #include "../util/posn.h"
 #include "../entity/entity.h"
-#include "movement.h"
-#include "movementDecorator.h"
+#include "movementComponent.h"
 #include "follow.h"
-#include <memory>
 #include <cmath>
 
-using std::unique_ptr;
-
-Follow::Follow(Entity *ent, int s, unique_ptr<Movement> c): MovementDecorator{std::move(c)}, leader{ent}, speed{s} {}
+Follow::Follow(Entity *ent, int s): MovementComponent{}, leader{ent}, speed{s} {}
 
 Posn Follow::velocity(const Entity &e) {
     Posn pos = e.getPos();

@@ -1,13 +1,17 @@
 #include "entity.h"
 #include "../movement/movement.h"
+#include "../movement/movementComponent.h"
 #include "../sprite/bitmap.h"
 #include "../sprite/sprite.h"
 #include "../util/action.h"
 #include "../util/border.h"
 #include "../util/posn.h"
 #include <memory>
+#include <string>
 #include <vector>
 
+using std::make_unique;
+using std::string;
 using std::unique_ptr;
 using std::vector;
 
@@ -30,7 +34,9 @@ void Entity::doBorderCollide(Border b) {
     }
 }
 
-Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{std::move(m)}, col{std::move(c)} {}
+Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m, unique_ptr<Collider> c) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{make_unique<Movement>(std::move(m))}, col{std::move(c)} {}
+
+Entity::Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c) : countdown{5}, destroy{false}, pos{Posn{x, y}}, spr{std::move(s)}, mvt{make_unique<Movement>()}, col{std::move(c)} {}
 
 void Entity::decrementCount() {
     if (countdown == 0)
@@ -73,7 +79,13 @@ void Entity::setActions(const vector<Action> &inputs) {
     acts = inputs;
 }
 
-void Entity::setMovement(unique_ptr<Movement> m) { mvt = std::move(m); }
+void Entity::addMovement(string s, unique_ptr<MovementComponent> m) {
+    mvt->addMovement(s, std::move(m));
+}
+
+void Entity::removeMovement(string s) {
+    mvt->removeMovement(s);
+}
 
 Posn &Entity::moveVelocity() {
     vel = mvt->getVelocity(*this);

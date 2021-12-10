@@ -1,16 +1,19 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include "../../config/colDecider.h"
 #include "../movement/movement.h"
+#include "../movement/movementComponent.h"
 #include "../sprite/bitmap.h"
 #include "../sprite/sprite.h"
-#include "../util/posn.h"
 #include "../util/action.h"
 #include "../util/border.h"
-#include "../../config/colDecider.h"
+#include "../util/posn.h"
 #include <memory>
+#include <string>
 #include <vector>
 
+using std::string;
 using std::unique_ptr;
 using std::vector;
 
@@ -30,7 +33,8 @@ class Entity {
     virtual void doBorderCollide(Border b);
 
 public:
-    Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Movement> m, unique_ptr<Collider> c);
+    Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m, unique_ptr<Collider> c);
+    Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c);
     virtual ~Entity() = default;
 
     void decrementCount();
@@ -56,7 +60,8 @@ public:
     void accept(Collider &v);
     void borderCollide(Border b);
 
-    void setMovement(unique_ptr<Movement> m);
+    void addMovement(string s, unique_ptr<MovementComponent> m);
+    void removeMovement(string s);
     Posn &moveVelocity();
     void setVelocity(Posn v);
 
