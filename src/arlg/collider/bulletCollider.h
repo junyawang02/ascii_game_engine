@@ -1,17 +1,14 @@
-#ifndef ENEMY_COLLIDER
-#define ENEMY_COLLIDER
+#ifndef BULLET_COLLIDER
+#define BULLET_COLLIDER
 
 #include "../../config/colDecider.h"
 
-class Damageable;
-
-class EnemyCollider: public Collider {
-    Damageable *enemy;
+class BulletCollider: public Collider {
     void doVisit(Player &e) override;
     void doVisit(Walker &e) override;
     void doVisit(Bullet &e) override;
 public:
-    EnemyCollider(Damageable *p);
+    BulletCollider(Entity *e);
 };
 
 #endif

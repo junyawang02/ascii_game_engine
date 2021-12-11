@@ -17,7 +17,7 @@ Bitmap::Bitmap(int height, int width, char c) {
         for (int j = 0 ; j < width ; ++j)
             theBitmap.push_back(Cell(j, i, c));
     }
-    dimensions = vector<int>{0, height, width, 0};
+    dimensions = vector<int>{0, height - 1, width - 1, 0};
 }
 
 Bitmap::Bitmap(vector<Cell> bmap) : theBitmap{bmap}, dimensions{vector<int>{0, 0, 0, 0}} {

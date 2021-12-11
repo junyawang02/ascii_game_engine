@@ -22,6 +22,7 @@ protected:
     void addState(unique_ptr<State> s);
 
 public:
+    Game();
     Game(deque<unique_ptr<State>> states);
     Game(unique_ptr<State> s);
     void go();

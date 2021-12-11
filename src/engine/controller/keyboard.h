@@ -16,7 +16,8 @@ class Keyboard : public Controller {
 public:
     Keyboard();
     Keyboard(map<int, Action> mapping);
-    void remap(int oldCmd, int newCmd);
+    void changeKey(int oldCmd, int newCmd);
+    void addAction(int cmd, Action act);
 };
 
 #endif

@@ -10,7 +10,6 @@ using std::pair;
 
 class Player: public Acceptor<Damageable, Player, Collider> {
     size_t control;
-    void doCreate() override;
     void doOnTick() override;
     pair<Line, string> doUpdateStatus() override;
 public:

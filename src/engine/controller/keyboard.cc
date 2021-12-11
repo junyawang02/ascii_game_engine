@@ -27,7 +27,11 @@ Action Keyboard::action() {
 	return mapping[c];
 }
 
-void Keyboard::remap(int oldCmd, int newCmd) {
+void Keyboard::changeKey(int oldCmd, int newCmd) {
     mapping[newCmd] = mapping[oldCmd];
     mapping.erase(oldCmd);
+}
+
+void Keyboard::addAction(int cmd, Action act) {
+    mapping[cmd] = act;
 }

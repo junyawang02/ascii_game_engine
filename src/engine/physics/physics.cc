@@ -33,6 +33,8 @@ bool Physics::checkCollisionHelp(Entity *ent, Entity *other) {
 }
 
 bool Physics::checkCollision(Entity *ent, Entity *other) {
+    if (ent->getDestroy() || other->getDestroy()) // can't collide with destroyed entities
+        return false;
     if (ent == other) // can't collide with self
         return false;
     if (ent->getPos() == other->getPos()) // very simple check

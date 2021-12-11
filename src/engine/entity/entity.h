@@ -32,12 +32,15 @@ class Entity {
     list<unique_ptr<Entity>> spawns;
     vector<Action> acts;
 
-    virtual void doCreate() = 0;
-    virtual void doOnTick() = 0;
+    virtual void doCreate();
+    virtual void doOnTick();
     virtual void doAccept(Collider &v) = 0;
     virtual void doBorderCollide(Border b);
     virtual pair<Line, string> doUpdateStatus();
     virtual pair<bool, bool> doEndState();
+
+protected:
+    void addSpawn(unique_ptr<Entity> e);
 
 public:
     Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m, unique_ptr<Collider> c);

@@ -46,12 +46,12 @@ void State::onTick(Game &g) {
                 endState((*it)->endState().second, g);
             if ((*it)->updateStatus().first != Line::NA)
                 g.updateViews((*it)->updateStatus().first, (*it)->updateStatus().second);
-            if ((*it)->getDestroy())
-                it = level.second.erase(it);
             if (!(*it)->getSpawns().empty()) {
                 addEntities(level.first, (*it)->getSpawns());
                 (*it)->clearSpawns();
             }
+            if ((*it)->getDestroy())
+                it = level.second.erase(it);
         }
     }
     doOnTick(g);

@@ -13,7 +13,7 @@ class Entity;
 Movement::Movement() {}
 
 Movement::Movement(unique_ptr<MovementComponent> base) {
-    moveMap["base"] = std::move(base);
+    moveMap.emplace("base", std::move(base));
 }
 
 Posn Movement::velocity(const Entity &e) {

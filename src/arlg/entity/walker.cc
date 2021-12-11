@@ -10,11 +10,11 @@
 
 using std::make_unique;
 
-Walker::Walker(int x, int y) : Acceptor{x, y, make_unique<Still>(Bitmap{2, 2, 'a'}), make_unique<EnemyCollider>(this), 5},
+Walker::Walker(int x, int y) : Acceptor{x, y, make_unique<Still>(Bitmap{2, 2, 'a'}), make_unique<EnemyCollider>(this), 3},
                                changeDir{0}, dir{0} {}
 
 void Walker::changeDirection() {
-    changeDir = myRandom(3, 8);
+    changeDir = myRandom(2, 7);
     int newDir = myRandom(1, 4);
     while (newDir == dir) {
         newDir = myRandom(1, 4);

@@ -4,10 +4,26 @@
 
 Collider::Collider(Entity *s): self{s} {};
 
-void Collider::bounce(Entity &s) {
+void Collider::bounceSelf(Entity &s) {
     Posn vel = s.getVelocity();
-    self->setVelocity(Posn{0, 0});
     self->setPos(self->getPos() + vel * 2);
-    s.setVelocity(Posn{0, 0});
+}
+
+void Collider::bounceOther(Entity &s) {
+    Posn vel = s.getVelocity();
     s.setPos(s.getPos() - vel * 2);
 }
+
+void Collider::bounce(Entity &s) {
+    bounceSelf(s);
+    bounceOther(s);
+}
+
+void Collider::destroySelf() {
+    self->flagDestroy();
+}
+
+void Collider::destroyOther(Entity &s) {
+    s.flagDestroy();
+}
+

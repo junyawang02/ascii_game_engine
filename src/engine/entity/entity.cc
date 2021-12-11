@@ -18,6 +18,10 @@ using std::string;
 using std::unique_ptr;
 using std::vector;
 
+void Entity::doCreate() { return; }
+
+void Entity::doOnTick() { return; }
+
 void Entity::doBorderCollide(Border b) {
     switch (b) {
     case Border::U:
@@ -104,6 +108,8 @@ Posn &Entity::moveVelocity() {
     vel = mvt->getVelocity(*this);
     return vel;
 }
+
+void Entity::addSpawn(unique_ptr<Entity> e) { spawns.emplace_back(std::move(e)); }
 
 list<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
 

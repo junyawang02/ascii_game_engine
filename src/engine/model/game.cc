@@ -12,7 +12,9 @@ using std::deque;
 using std::unique_ptr;
 using std::vector;
 
-Game::Game(deque<unique_ptr<State>> states) : clock{Clock{}}, states{std::move(states)}, numTick{0} {}
+Game::Game(): clock{Clock{}} {}
+
+Game::Game(deque<unique_ptr<State>> states) : clock{Clock{}}, states{std::move(states)} {}
 
 Game::Game(unique_ptr<State> s) : clock{Clock{}} {
     addState(std::move(s));
