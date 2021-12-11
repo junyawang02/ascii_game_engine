@@ -14,7 +14,7 @@ Walker::Walker(int x, int y) : Acceptor{x, y, make_unique<Still>(Bitmap{2, 2, 'a
                                changeDir{0}, dir{0} {}
 
 void Walker::changeDirection() {
-    changeDir = myRandom(3, 5);
+    changeDir = myRandom(3, 8);
     int newDir = myRandom(1, 4);
     while (newDir == dir) {
         newDir = myRandom(1, 4);

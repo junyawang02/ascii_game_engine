@@ -9,13 +9,17 @@
 #include "../util/action.h"
 #include "../util/border.h"
 #include "../util/posn.h"
+#include "../util/line.h"
 #include <memory>
 #include <string>
 #include <vector>
+#include <list>
 
 using std::string;
 using std::unique_ptr;
 using std::vector;
+using std::list;
+using std::pair;
 
 class Entity {
     int countdown;
@@ -25,12 +29,15 @@ class Entity {
     unique_ptr<Sprite> spr;
     unique_ptr<Movement> mvt;
     unique_ptr<Collider> col;
-    vector<Action> acts = vector<Action>{Action::INVALID};
+    list<unique_ptr<Entity>> spawns;
+    vector<Action> acts;
 
     virtual void doCreate() = 0;
     virtual void doOnTick() = 0;
     virtual void doAccept(Collider &v) = 0;
     virtual void doBorderCollide(Border b);
+    virtual pair<Line, string> doUpdateStatus();
+    virtual pair<bool, bool> doEndState();
 
 public:
     Entity(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m, unique_ptr<Collider> c);
@@ -63,7 +70,14 @@ public:
     void addMovement(string s, unique_ptr<MovementComponent> m);
     void removeMovement(string s);
     Posn &moveVelocity();
+    Posn getVelocity();
     void setVelocity(Posn v);
+
+    list<unique_ptr<Entity>> &getSpawns();
+    void clearSpawns();
+
+    pair<Line, string> updateStatus();
+    pair<bool, bool> endState();
 
     void create();
     void onTick();

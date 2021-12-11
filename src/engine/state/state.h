@@ -17,17 +17,20 @@ using std::pair;
 using std::unique_ptr;
 using std::vector;
 
+class Game;
+
 class State {
     map<int, list<unique_ptr<Entity>>> entities;
     unique_ptr<Physics> phys;
-    virtual void doCreate() = 0;
-    virtual void doOnTick() = 0;
+    virtual void doCreate(Game &g) = 0;
+    virtual void doOnTick(Game &g) = 0;
+    void endState(bool win, Game &g);
 
 public:
     State(unique_ptr<Physics> p);
     virtual ~State() = default;
-    void create();
-    void onTick();
+    void create(Game &g);
+    void onTick(Game &g);
     void addEntity(int height, unique_ptr<Entity> e);
     void addEntities(int height, list<unique_ptr<Entity>> &ents);
     bool checkCollisions(Entity *e, list<Entity*> others);

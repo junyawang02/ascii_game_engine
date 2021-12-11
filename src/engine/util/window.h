@@ -17,7 +17,7 @@ public:
     WINDOW *getWindow();
     void refreshWin();
     void drawBorder();
-    void updateLine(Line line, const string &text);
+    void updateLine(Line line, string text);
     void drawChar(const Posn &p, char c);
     void clear();
 };

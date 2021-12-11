@@ -7,11 +7,13 @@
 using std::unique_ptr;
 
 class Damageable;
+class Game;
 
 class Level : public State {
-    void doCreate() override;
-    void doOnTick() override;
+    void doCreate(Game &g) override;
+    void doOnTick(Game &g) override;
     virtual unique_ptr<Damageable> doGetEnemy(int x, int y) = 0;
+
 public:
     Level();
     unique_ptr<Damageable> getEnemy(int x, int y);

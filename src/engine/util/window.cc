@@ -12,7 +12,7 @@ void Window::refreshWin() { wrefresh(theWindow); }
 
 void Window::drawBorder() { wborder(theWindow, '|', '|', '-', '-', '+', '+', '+', '+'); }
 
-void Window::updateLine(Line line, const string &text) {
+void Window::updateLine(Line line, string text) {
     wmove(theWindow, static_cast<int>(line), 0);
     wclrtoeol(theWindow);
     wprintw(theWindow, text.c_str());

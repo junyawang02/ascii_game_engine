@@ -3,23 +3,33 @@
 #include "../state/state.h"
 #include "../util/action.h"
 #include "../util/line.h"
+#include <deque>
 #include <memory>
-#include <vector>
 #include <string>
+#include <vector>
 
+using std::deque;
 using std::unique_ptr;
 using std::vector;
 
-Game::Game(unique_ptr<State> s) : clock{Clock{}}, state{std::move(s)} {}
+Game::Game(deque<unique_ptr<State>> states) : clock{Clock{}}, states{std::move(states)}, numTick{0} {}
+
+Game::Game(unique_ptr<State> s) : clock{Clock{}} {
+    addState(std::move(s));
+}
+
+void Game::doEndState(bool win) {
+    states.pop_front();
+}
 
 void Game::addState(unique_ptr<State> s) {
-    state = std::move(s);
+    states.push_back(std::move(s));
 }
 
 void Game::go() {
-    if (state == nullptr)
+    if (states.empty())
         return;
-    state->create();
+    states[0]->create(*this);
     playing = true;
     updateViews();
     displayViews();
@@ -28,19 +38,24 @@ void Game::go() {
         if (clock.tick()) {
             ++numTick;
             vector<Action> inputs = getAllActions();
-            state->updateActions(inputs);
+            states[0]->updateActions(inputs);
             updateViews();
-            // updateViews(l1, "Ticks passed:" + std::to_string(numTick));
             displayViews();
-            state->onTick();
+            states[0]->onTick(*this);
             if (inputs[0] == Action::ESCAPE)
                 stop();
         }
     }
 }
 
+void Game::endState(bool win) {
+    doEndState(win);
+    if (states.empty())
+        stop();
+}
+
 void Game::stop() {
     playing = false;
 }
 
-vector<pair<const Posn &, const Bitmap &>> Game::drawList() { return state->drawList(); }
+vector<pair<const Posn &, const Bitmap &>> Game::drawList() { return states[0]->drawList(); }

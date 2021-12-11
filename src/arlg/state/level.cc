@@ -11,9 +11,11 @@
 using std::make_unique;
 using std::unique_ptr;
 
+class Game;
+
 Level::Level(): State{make_unique<Physics>(true)} {}
 
-void Level::doCreate() {
+void Level::doCreate(Game &g) {
     int numEnemies = myRandom(5, 10);
     list<unique_ptr<Entity>> ents;
     list<Entity*> entPtrs;
@@ -37,7 +39,7 @@ void Level::doCreate() {
     addEntities(0, ents);
 }
 
-void Level::doOnTick() {
+void Level::doOnTick(Game &g) {
     return;
 }
 

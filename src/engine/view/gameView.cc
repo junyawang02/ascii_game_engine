@@ -34,7 +34,7 @@ void GameView::update() {
     screen->drawBorder();
 }
 
-void GameView::update(Line line, const string &text) {
+void GameView::update(Line line, string text) {
     status->clear();
     status->updateLine(line, text);
 }

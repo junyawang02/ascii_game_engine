@@ -28,7 +28,7 @@ public:
     void addController(unique_ptr<Controller> c);
     virtual ~Model() = default;
     void updateViews();
-    void updateViews(Line line, const string &s);
+    void updateViews(Line line, string s);
     void displayViews();
 };
 

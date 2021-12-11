@@ -41,7 +41,7 @@ void Model::updateViews() {
         v->update();
 }
 
-void Model::updateViews(Line line, const string &s) {
+void Model::updateViews(Line line, string s) {
     for (auto &v : views)
         v->update(line, s);
 }
