@@ -1,17 +1,17 @@
 #include "enemyCollider.h"
-#include "../entity/damageable.h"
+#include "../entity/enemy.h"
 #include "../entity/walker.h"
 #include "../entity/player.h"
 #include "../entity/bullet.h"
 
-EnemyCollider::EnemyCollider(Damageable *p) : Collider{p}, enemy{p} {}
+EnemyCollider::EnemyCollider(Enemy *p) : Collider{p}, enemy{p} {}
 
 void EnemyCollider::doVisit(Player &e) {
     bounce(e);
     e.addHealth(-1);
 }
 
-void EnemyCollider::doVisit(Walker &e) {
+void EnemyCollider::doVisit(Enemy &e) {
     bounce(e);
 }
 

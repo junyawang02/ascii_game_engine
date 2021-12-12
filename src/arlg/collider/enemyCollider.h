@@ -3,15 +3,15 @@
 
 #include "../../config/colDecider.h"
 
-class Damageable;
+class Enemy;
 
 class EnemyCollider: public Collider {
-    Damageable *enemy;
+    Enemy *enemy;
     void doVisit(Player &e) override;
-    void doVisit(Walker &e) override;
+    void doVisit(Enemy &e) override;
     void doVisit(Bullet &e) override;
 public:
-    EnemyCollider(Damageable *p);
+    EnemyCollider(Enemy *p);
 };
 
 #endif

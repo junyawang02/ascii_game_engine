@@ -6,10 +6,11 @@
 class Entity;
 class Player;
 class Bullet;
-class Walker;
+class Enemy;
+class Exit;
 class Message;
 
-class Collider : public Visitor<Player, Bullet, Walker, Message>{
+class Collider : public Visitor<Player, Bullet, Enemy, Exit, Message>{
 protected:
     Entity *self;
 public:

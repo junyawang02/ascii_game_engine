@@ -5,7 +5,7 @@
 
 class BulletCollider: public Collider {
     void doVisit(Player &e) override;
-    void doVisit(Walker &e) override;
+    void doVisit(Enemy &e) override;
     void doVisit(Bullet &e) override;
 public:
     BulletCollider(Entity *e);

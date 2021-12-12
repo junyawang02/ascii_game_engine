@@ -2,11 +2,10 @@
 #define WALKER_H
 
 #include "../../engine/entity/entity.h"
-#include "../../engine/util/acceptor.h"
 #include "../../config/colDecider.h"
-#include "damageable.h"
+#include "enemy.h"
 
-class Walker: public Acceptor<Damageable, Walker, Collider> {
+class Walker: public Enemy {
     int changeDir;
     int dir;
     void doCreate() override;

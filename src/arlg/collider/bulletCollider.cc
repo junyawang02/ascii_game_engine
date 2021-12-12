@@ -10,7 +10,7 @@ void BulletCollider::doVisit(Player &e) {
     e.addHealth(-1);
 }
 
-void BulletCollider::doVisit(Walker &e) {
+void BulletCollider::doVisit(Enemy &e) {
     destroySelf();
     e.addHealth(-1);
 }

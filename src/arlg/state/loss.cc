@@ -21,3 +21,5 @@ void Loss::doCreate(Game &g) {
     g.updateViews(Line::L1, end);
     addEntity(0, make_unique<Message>(false));
 }
+
+
