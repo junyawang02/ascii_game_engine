@@ -32,9 +32,11 @@ pair<Line, string> Exit::doUpdateStatus() {
     return pair<Line, string>{Line::NA, ""};
 }
 
-void Exit::open() { 
-    isOpen = true;
-    nextForm(); 
+void Exit::open() {
+    if (!isOpen) {
+        isOpen = true;
+        nextForm();
+    }
 }
 
 void Exit::finish() { isFinish = true; }

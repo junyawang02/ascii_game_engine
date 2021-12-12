@@ -12,7 +12,7 @@ class ARLGEntity;
 
 class Level : public State {
     void doCreate(Game &g) override;
-    // void doOnTick(Game &g) override;
+    void doOnTick(Game &g) override;
     virtual unique_ptr<Damageable> doGetEnemy(int x, int y) = 0;
 
 public:

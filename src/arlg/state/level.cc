@@ -7,6 +7,7 @@
 #include "../entity/damageable.h"
 #include "../entity/player.h"
 #include "../entity/exit.h"
+#include "../entity/arlgEntity.h"
 #include <memory>
 #include <list>
 
@@ -19,7 +20,6 @@ class Game;
 Level::Level() : State{make_unique<Physics>(true)} {}
 
 void Level::doCreate(Game &g) {
-    int numEnemies = myRandom(5, 10);
     list<unique_ptr<Entity>> ents;
     list<Entity *> entPtrs;
 
@@ -34,6 +34,7 @@ void Level::doCreate(Game &g) {
     unique_ptr<Exit> exit = make_unique<Exit>(exitPos.x, exitPos.y);
     entPtrs.push_back(exit.get());
 
+    int numEnemies = myRandom(0, 0);
     for (int i = 0; i < numEnemies; ++i) {
         int x = myRandom(1, 78);
         int y = myRandom(1, 20);
@@ -48,6 +49,20 @@ void Level::doCreate(Game &g) {
     }
     addEntity(-1, std::move(exit));
     addEntities(0, ents);
+}
+
+void Level::doOnTick(Game &g) {
+    list<Entity *> entityList = getEntities(0);
+    for (auto &entity : entityList) {
+        ARLGEntity* ent = static_cast<ARLGEntity *>(entity); // downcast
+        if (ent->isEnemy())
+            return;
+    }
+    list<Entity *> exitLevel = getEntities(-1);
+    Posn exitPos = (*exitLevel.begin())->getPos();
+    unique_ptr<Exit> exit = make_unique<Exit>(exitPos.x, exitPos.y);
+    exit->open();
+    addEntity(0, std::move(exit));
 }
 
 unique_ptr<Damageable> Level::getEnemy(int x, int y) { return doGetEnemy(x, y); }

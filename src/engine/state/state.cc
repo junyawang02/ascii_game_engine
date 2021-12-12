@@ -1,11 +1,11 @@
 #include "state.h"
 #include "../entity/entity.h"
+#include "../model/game.h"
 #include "../physics/physics.h"
 #include "../sprite/bitmap.h"
 #include "../util/action.h"
-#include "../util/posn.h"
 #include "../util/line.h"
-#include "../model/game.h"
+#include "../util/posn.h"
 #include <list>
 #include <memory>
 #include <vector>
@@ -75,15 +75,24 @@ void State::addEntities(int height, list<unique_ptr<Entity>> &ents) {
     }
 }
 
+list<Entity *> State::getEntities(int height) {
+    list<Entity *> entityList;
+    for (auto &entity : entities[height]) {
+        entityList.push_back(entity.get());
+    }
+    return entityList;
+}
+
 void State::updateActions(const vector<Action> &inputs) {
     for (auto &level : entities)
         for (auto &entity : level.second)
             entity->setActions(inputs);
 }
 
-bool State::checkCollisions(Entity *e, list<Entity*> others) {
-    for (auto other: others)
-        if (phys->checkCollision(e, other) || !phys->inBounds(e)) return true;
+bool State::checkCollisions(Entity *e, list<Entity *> others) {
+    for (auto other : others)
+        if (phys->checkCollision(e, other) || !phys->inBounds(e))
+            return true;
     return false;
 }
 

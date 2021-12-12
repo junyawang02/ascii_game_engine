@@ -33,6 +33,7 @@ public:
     void onTick(Game &g);
     void addEntity(int height, unique_ptr<Entity> e);
     void addEntities(int height, list<unique_ptr<Entity>> &ents);
+    list <Entity*> getEntities(int height);
     bool checkCollisions(Entity *e, list<Entity*> others);
     void updateActions(const vector<Action> &inputs);
     vector<pair<const Posn &, const Bitmap &>> drawList();
