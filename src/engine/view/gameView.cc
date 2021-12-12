@@ -35,8 +35,12 @@ void GameView::update() {
 }
 
 void GameView::update(Line line, string text) {
-    status->clear();
     status->updateLine(line, text);
+}
+
+void GameView::clear() {
+    screen->clear();
+    status->clear();
 }
 
 void GameView::displayView() {

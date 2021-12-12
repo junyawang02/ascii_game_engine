@@ -7,8 +7,9 @@ class Entity;
 class Player;
 class Bullet;
 class Walker;
+class Message;
 
-class Collider : public Visitor<Player, Bullet, Walker>{
+class Collider : public Visitor<Player, Bullet, Walker, Message>{
 protected:
     Entity *self;
 public:

@@ -23,6 +23,7 @@ public:
     ~GameView();
     void update() override;
     void update(Line line, string text) override;
+    void clear() override;
     void displayView() override;
     void drawBitmap(const Posn &p, const Bitmap &b);
 };

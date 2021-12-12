@@ -29,6 +29,7 @@ public:
     virtual ~Model() = default;
     void updateViews();
     void updateViews(Line line, string s);
+    void clearViews();
     void displayViews();
 };
 

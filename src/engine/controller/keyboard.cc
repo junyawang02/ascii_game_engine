@@ -1,11 +1,11 @@
 #include "keyboard.h"
 #include "../util/action.h"
-#include "ncurses.h"
 #include <map>
+#include <ncurses.h>
 
 using std::map;
 
-const map<int, Action> defaultMap {
+const map<int, Action> defaultMap{
     {'w', Action::UP},
     {'s', Action::DOWN},
     {'a', Action::LEFT},
@@ -14,17 +14,20 @@ const map<int, Action> defaultMap {
     {KEY_DOWN, Action::DOWN},
     {KEY_LEFT, Action::LEFT},
     {KEY_RIGHT, Action::RIGHT},
-    {27, Action::ESCAPE}
+    {27, Action::ESCAPE},
+    {ERR, Action::NONE},
 };
 
-Keyboard::Keyboard(): mapping{defaultMap} {}
+Keyboard::Keyboard() : mapping{defaultMap} { setlocale(LC_ALL, ""); }
 
-Keyboard::Keyboard(map<int, Action> mapping): mapping{mapping} {}
+Keyboard::Keyboard(map<int, Action> mapping) : mapping{mapping} { setlocale(LC_ALL, ""); }
 
 Action Keyboard::action() {
     int c = getch();
-	flushinp();
-	return mapping[c];
+    flushinp();
+    if (mapping.count(c))
+        return mapping[c];
+    return Action::INVALID;
 }
 
 void Keyboard::changeKey(int oldCmd, int newCmd) {

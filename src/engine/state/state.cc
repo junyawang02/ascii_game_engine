@@ -17,6 +17,10 @@ using std::vector;
 
 State::State(unique_ptr<Physics> p) : phys{std::move(p)} {}
 
+void State::doCreate(Game &g) { return; }
+
+void State::doOnTick(Game &g) { return; }
+
 void State::endState(bool win, Game &g) { g.endState(win); }
 
 void State::create(Game &g) {
@@ -36,16 +40,19 @@ void State::onTick(Game &g) {
         }
         phys->step(entityList);
     }
+    doOnTick(g);
 
     // end game, print statuses, destroy entities, and spawn entities
     // based on flags from entities
     for (auto &level : entities) {
         for (auto it = level.second.begin(); it != level.second.end(); ++it) {
             (*it)->onTick();
-            if ((*it)->endState().first)
-                endState((*it)->endState().second, g);
             if ((*it)->updateStatus().first != Line::NA)
                 g.updateViews((*it)->updateStatus().first, (*it)->updateStatus().second);
+            if ((*it)->endState().first) {
+                endState((*it)->endState().second, g);
+                return;
+            }
             if (!(*it)->getSpawns().empty()) {
                 addEntities(level.first, (*it)->getSpawns());
                 (*it)->clearSpawns();
@@ -54,7 +61,6 @@ void State::onTick(Game &g) {
                 it = level.second.erase(it);
         }
     }
-    doOnTick(g);
 }
 
 void State::addEntity(int height, unique_ptr<Entity> e) {

@@ -46,6 +46,11 @@ void Model::updateViews(Line line, string s) {
         v->update(line, s);
 }
 
+void Model::clearViews() {
+    for (auto &v : views)
+        v->clear();
+}
+
 void Model::displayViews() {
     for (auto &v : views) {
         v->displayView();

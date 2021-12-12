@@ -22,8 +22,8 @@ class Game;
 class State {
     map<int, list<unique_ptr<Entity>>> entities;
     unique_ptr<Physics> phys;
-    virtual void doCreate(Game &g) = 0;
-    virtual void doOnTick(Game &g) = 0;
+    virtual void doCreate(Game &g);
+    virtual void doOnTick(Game &g);
     void endState(bool win, Game &g);
 
 public:

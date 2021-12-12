@@ -30,6 +30,13 @@ void Player::doOnTick() {
         addSpawn(make_unique<Bullet>(getPos(), 2, 0, 'O'));
 }
 
+pair<bool, bool> Player::doEndState() {
+    if (getDestroy())
+        return pair<bool, bool>{true, false};
+    else
+        return pair<bool, bool>{false, false};
+}
+
 pair<Line, string> Player::doUpdateStatus() {
     string healthMessage = "Health: " + std::to_string(getHealth());
     return pair<Line, string>{Line::L1, healthMessage};

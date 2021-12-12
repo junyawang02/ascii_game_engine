@@ -22,6 +22,7 @@ Game::Game(unique_ptr<State> s) : clock{Clock{}} {
 
 void Game::doEndState(bool win) {
     states.pop_front();
+    go();
 }
 
 void Game::addState(unique_ptr<State> s) {
@@ -51,6 +52,7 @@ void Game::go() {
 }
 
 void Game::endState(bool win) {
+    clearViews();
     doEndState(win);
     if (states.empty())
         stop();
