@@ -9,11 +9,11 @@
 PlayerCollider::PlayerCollider(Player *p): Collider{p}, player{p} {}
 
 void PlayerCollider::doVisit(Player *e) {
-    bounce(e);
+    getImpl()->bounce(e);
 }
 
 void PlayerCollider::doVisit(Enemy *e) {
-    bounce(e);
+    getImpl()->bounce(e);
     player->addHealth(-1);
     Boss *b = dynamic_cast<Boss*>(e);
     if (b)
@@ -23,7 +23,7 @@ void PlayerCollider::doVisit(Enemy *e) {
 void PlayerCollider::doVisit(Bullet *e) {
     if (!e->invincible()) {
         player->addHealth(-1);
-        destroyOther(e);
+        getImpl()->destroyOther(e);
     }
 }
 
@@ -34,5 +34,5 @@ void PlayerCollider::doVisit(Exit *e) {
 
 void PlayerCollider::doVisit(Health *e) {
     player->addHealth(1);
-    destroyOther(e);
+    getImpl()->destroyOther(e);
 }

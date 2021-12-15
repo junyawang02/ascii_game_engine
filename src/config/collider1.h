@@ -1,7 +1,8 @@
-#ifndef COLLIDER1_H
-#define COLLIDER1_H
+#ifndef COLLIDER_H
+#define COLLIDER_H
 
-#include "../engine/util/visitor.h"
+#include "base/colliderBase.h"
+#include <memory>
 
 class Entity;
 class Player;
@@ -12,19 +13,9 @@ class Health;
 class Message;
 class Fire;
 
-class Collider : public Visitor<Player, Bullet, Enemy, Exit, Health, Fire, Message> {
-protected:
-    Entity *self;
+class Collider : public ColliderBase<Player, Bullet, Enemy, Exit, Health, Fire, Message> {
 public:
-    Collider(Entity *s);
-    void bounceSelf(Entity *s);
-    void bounceOther(Entity *s);
-    void bounce(Entity *s);
-    void destroySelf();
-    void destroyOther(Entity *s);
-    void stopSelf();
-    void stopOther(Entity *s);
-    void stop(Entity *s);
+    Collider(Entity *s): ColliderBase{s} {}
 };
 
 #endif

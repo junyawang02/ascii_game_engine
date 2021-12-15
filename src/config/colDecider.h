@@ -1,9 +1,12 @@
 #ifdef GAME
-#ifndef COLLIDER_H
-#define COLLIDER_H
+#ifndef COLDECIDER_H
+#define COLDECIDER_H
 
 #if GAME == 1
 #include "collider1.h"
+
+#elif GAME == 2
+#include "collider2.h"
 #endif
 
 #endif

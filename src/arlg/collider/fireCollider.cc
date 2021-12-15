@@ -15,7 +15,7 @@ void FireCollider::doVisit(Enemy *e) {
 }
 
 void FireCollider::doVisit(Bullet *e) {
-    stop(e);
-    destroySelf();
-    destroyOther(e);
+    getImpl()->stop(e);
+    getImpl()->destroySelf();
+    getImpl()->destroyOther(e);
 }

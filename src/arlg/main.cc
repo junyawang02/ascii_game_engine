@@ -1,4 +1,4 @@
-#include "arlg/game/arlg.h"
+#include "game/arlg.h"
 
 int main(int argc, char *argv[]) {
     ARLG theGame{};

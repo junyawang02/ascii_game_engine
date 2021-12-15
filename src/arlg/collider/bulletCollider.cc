@@ -10,13 +10,13 @@ BulletCollider::BulletCollider(Bullet *b) : Collider{b}, bullet{b} {}
 
 void BulletCollider::doVisit(Player *e) {
     if (!bullet->invincible()) {
-        destroySelf();
+        getImpl()->destroySelf();
         e->addHealth(-1);
     }
 }
 
 void BulletCollider::doVisit(Enemy *e) {
-    destroySelf();
+    getImpl()->destroySelf();
     if (!bullet->isFromEnemy()) {
         Popup *p = dynamic_cast<Popup *>(e);
         if (p) {
@@ -35,12 +35,12 @@ void BulletCollider::doVisit(Enemy *e) {
 }
 
 void BulletCollider::doVisit(Bullet *e) {
-    destroySelf();
-    destroyOther(e);
+    getImpl()->destroySelf();
+    getImpl()->destroyOther(e);
 }
 
 void BulletCollider::doVisit(Fire *e) {
-    stop(e);
-    destroySelf();
-    destroyOther(e);
+    getImpl()->stop(e);
+    getImpl()->destroySelf();
+    getImpl()->destroyOther(e);
 }

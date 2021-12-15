@@ -9,7 +9,7 @@
 SnakeCollider::SnakeCollider(Snake *s) : Collider{s}, snake{s} {}
 
 void SnakeCollider::doVisit(Player *e) {
-    bounce(e);
+    getImpl()->bounce(e);
     e->addHealth(-1);
 }
 
@@ -17,16 +17,16 @@ void SnakeCollider::doVisit(Enemy *e) {
     Boss *boss = dynamic_cast<Boss *>(e);
     if (boss)
         return;
-    bounce(e);
+    getImpl()->bounce(e);
 }
 
 void SnakeCollider::doVisit(Bullet *e) {
     if (snake->getPos() != e->getPos())
         snake->addHealth(-1);
-    destroyOther(e);
+    getImpl()->destroyOther(e);
 }
 
 void SnakeCollider::doVisit(Health *e) {
     snake->addHealth(1);
-    destroyOther(e);
+    getImpl()->destroyOther(e);
 }

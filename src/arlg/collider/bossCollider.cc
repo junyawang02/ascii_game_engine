@@ -6,7 +6,7 @@
 BossCollider::BossCollider(Boss *b) : Collider{b}, boss{b} {}
 
 void BossCollider::doVisit(Player *e) {
-    bounce(e);
+    getImpl()->bounce(e);
     boss->changeDirection();
     e->addHealth(-1);
 }
@@ -14,5 +14,5 @@ void BossCollider::doVisit(Player *e) {
 void BossCollider::doVisit(Bullet *e) {
     if (!e->isFromEnemy())
         boss->addHealth(-1);
-    destroyOther(e);
+    getImpl()->destroyOther(e);
 }
