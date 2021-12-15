@@ -11,4 +11,8 @@ Enemy::Enemy(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m
 
 Enemy::Enemy(int x, int y, unique_ptr<Sprite> s, float health) : Acceptor{x, y, std::move(s), make_unique<EnemyCollider>(this), health} {}
 
+Enemy::Enemy(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> mvt, unique_ptr<Collider> c, float health) : Acceptor{x, y, std::move(s), std::move(mvt), std::move(c), health} {}
+
+Enemy::Enemy(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c, float health) : Acceptor{x, y, std::move(s), std::move(c), health} {}
+
 bool Enemy::isEnemy() { return true; }

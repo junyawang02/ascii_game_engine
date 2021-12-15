@@ -17,11 +17,12 @@ void PlayerCollider::doVisit(Enemy &e) {
 }
 
 void PlayerCollider::doVisit(Bullet &e) {
-    if (!player->invincible()) {
+    if (!e.invincible()) {
         player->addHealth(-1);
         destroyOther(e);
     }
 }
+
 
 void PlayerCollider::doVisit(Exit &e) {
     e.finish();

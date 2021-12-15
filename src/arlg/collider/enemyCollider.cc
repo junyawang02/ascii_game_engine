@@ -1,6 +1,5 @@
 #include "enemyCollider.h"
 #include "../entity/enemy.h"
-#include "../entity/walker.h"
 #include "../entity/player.h"
 #include "../entity/bullet.h"
 #include "../entity/health.h"
@@ -17,7 +16,8 @@ void EnemyCollider::doVisit(Enemy &e) {
 }
 
 void EnemyCollider::doVisit(Bullet &e) {
-    enemy->addHealth(-1);
+    if (!e.isFromEnemy())
+        enemy->addHealth(-1);
     destroyOther(e);
 }
 

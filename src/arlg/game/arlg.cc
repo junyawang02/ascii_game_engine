@@ -5,6 +5,7 @@
 #include "../../engine/view/gameView.h"
 #include "../state/level1.h"
 #include "../state/level2.h"
+#include "../state/level3.h"
 #include "../state/loss.h"
 #include "../state/win.h"
 #include <deque>
@@ -19,6 +20,7 @@ ARLG::ARLG() : Game{} {
     srand(time(0));
     addState(make_unique<Level1>());
     addState(make_unique<Level2>());
+    addState(make_unique<Level3>());
     addState(make_unique<Win>());
     addState(make_unique<Loss>());
     unique_ptr<Keyboard> k = make_unique<Keyboard>();
@@ -28,7 +30,6 @@ ARLG::ARLG() : Game{} {
     k->addAction('d', Action::D);
     addController(std::move(k));
     addView(make_unique<GameView>(this));
-    go();
 }
 
 void ARLG::skipToLevel(int n) {

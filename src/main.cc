@@ -6,5 +6,7 @@ int main(int argc, char *argv[]) {
         int level = atoi(argv[1]);
         if (level >= 2 && level <= 6)
             theGame.skipToLevel(level);
+    } else {
+        theGame.go();
     }
 }
