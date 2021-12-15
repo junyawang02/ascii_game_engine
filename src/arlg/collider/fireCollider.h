@@ -4,9 +4,9 @@
 #include "../../config/colDecider.h"
 
 class FireCollider: public Collider {
-    void doVisit(Player &e) override;
-    void doVisit(Enemy &e) override;
-    void doVisit(Bullet &e) override;
+    void doVisit(Player *e) override;
+    void doVisit(Enemy *e) override;
+    void doVisit(Bullet *e) override;
 public:
     FireCollider(Fire *f);
 };

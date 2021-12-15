@@ -11,6 +11,7 @@ struct Posn {
     Posn &operator-=(const Posn &other);
     Posn &operator*=(int n);
     bool operator==(const Posn &other) const;
+    bool operator!=(const Posn &other) const;
 };
 
 Posn operator+(const Posn &p1, const Posn &p2);

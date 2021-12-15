@@ -26,6 +26,8 @@ Posn &Posn::operator*=(int n) {
 
 bool Posn::operator==(const Posn &other) const { return x == other.x && y == other.y; }
 
+bool Posn::operator!=(const Posn &other) const { return !(*this == other); }
+
 Posn operator+(const Posn &p1, const Posn &p2) {
     return Posn{p1.x + p2.x, p1.y + p2.y};
 }

@@ -1,18 +1,18 @@
-#ifndef POPUP_COLLIDER
-#define POPUP_COLLIDER
+#ifndef SNAKE_COLLIDER
+#define SNAKE_COLLIDER
 
 #include "../../config/colDecider.h"
 
-class Popup;
+class Snake;
 
-class PopupCollider: public Collider {
-    Popup *popup;
+class SnakeCollider: public Collider {
+    Snake *snake;
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;
     void doVisit(Bullet *e) override;
     void doVisit(Health *e) override;
 public:
-    PopupCollider(Popup *p);
+    SnakeCollider(Snake *s);
 };
 
 #endif

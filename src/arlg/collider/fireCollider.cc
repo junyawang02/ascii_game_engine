@@ -6,15 +6,15 @@
 
 FireCollider::FireCollider(Fire *f) : Collider{f} {}
 
-void FireCollider::doVisit(Player &e) {
-    e.addHealth(-0.5);
+void FireCollider::doVisit(Player *e) {
+    e->addHealth(-0.5);
 }
 
-void FireCollider::doVisit(Enemy &e) {
-    e.addHealth(-0.5);
+void FireCollider::doVisit(Enemy *e) {
+    e->addHealth(-0.5);
 }
 
-void FireCollider::doVisit(Bullet &e) {
+void FireCollider::doVisit(Bullet *e) {
     stop(e);
     destroySelf();
     destroyOther(e);

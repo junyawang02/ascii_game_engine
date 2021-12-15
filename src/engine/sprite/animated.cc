@@ -5,7 +5,7 @@
 
 using std::vector;
 
-Animated::Animated(vector<Bitmap> b): bmaps{b} {}
+Animated::Animated(vector<Bitmap> b): bmaps{b}, curFrame{0} {}
 
 const Bitmap &Animated::doGetFrame() const {
     return bmaps[curFrame];

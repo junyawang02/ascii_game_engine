@@ -17,14 +17,14 @@ protected:
     Entity *self;
 public:
     Collider(Entity *s);
-    void bounceSelf(Entity &s);
-    void bounceOther(Entity &s);
-    void bounce(Entity &s);
+    void bounceSelf(Entity *s);
+    void bounceOther(Entity *s);
+    void bounce(Entity *s);
     void destroySelf();
-    void destroyOther(Entity &s);
+    void destroyOther(Entity *s);
     void stopSelf();
-    void stopOther(Entity &s);
-    void stop(Entity &s);
+    void stopOther(Entity *s);
+    void stop(Entity *s);
 };
 
 #endif

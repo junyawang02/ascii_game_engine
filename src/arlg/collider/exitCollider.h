@@ -7,7 +7,7 @@ class Exit;
 
 class ExitCollider: public Collider {
     Exit *exit;
-    void doVisit(Player &e) override;
+    void doVisit(Player *e) override;
 public:
     ExitCollider(Exit *e);
 };

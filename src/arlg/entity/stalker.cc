@@ -2,7 +2,6 @@
 #include "../../engine/movement/follow.h"
 #include "../../engine/sprite/bitmap.h"
 #include "../../engine/sprite/still.h"
-#include "enemy.h"
 #include "player.h"
 #include <memory>
 

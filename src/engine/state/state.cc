@@ -25,10 +25,11 @@ void State::endState(bool win, Game &g) { g.endState(win); }
 
 void State::create(Game &g) {
     doCreate(g);
-    for (auto &level : entities)
+    for (auto &level : entities) {
         for (auto &entity : level.second) {
             entity->create();
         }
+    }
 }
 
 void State::processEntities(Game &g) {

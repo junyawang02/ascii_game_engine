@@ -4,6 +4,6 @@
 
 ExitCollider::ExitCollider(Exit *e): Collider{e}, exit{e} {}
 
-void ExitCollider::doVisit(Player &e) {
+void ExitCollider::doVisit(Player *e) {
     exit->finish();
 }
