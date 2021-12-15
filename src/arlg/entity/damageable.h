@@ -4,7 +4,7 @@
 #include "arlgEntity.h"
 #include "../../engine/movement/movementComponent.h"
 #include "../../engine/sprite/sprite.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include <memory>
 
 using std::unique_ptr;

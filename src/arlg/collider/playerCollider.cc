@@ -6,14 +6,14 @@
 #include "../entity/health.h"
 #include "../entity/boss.h"
 
-PlayerCollider::PlayerCollider(Player *p): Collider{p}, player{p} {}
+PlayerCollider::PlayerCollider(Player *p): ARLGCollider{p}, player{p} {}
 
 void PlayerCollider::doVisit(Player *e) {
-    getImpl()->bounce(e);
+    bounce(e);
 }
 
 void PlayerCollider::doVisit(Enemy *e) {
-    getImpl()->bounce(e);
+    bounce(e);
     player->addHealth(-1);
     Boss *b = dynamic_cast<Boss*>(e);
     if (b)
@@ -23,7 +23,7 @@ void PlayerCollider::doVisit(Enemy *e) {
 void PlayerCollider::doVisit(Bullet *e) {
     if (!e->invincible()) {
         player->addHealth(-1);
-        getImpl()->destroyOther(e);
+        destroyOther(e);
     }
 }
 
@@ -34,5 +34,5 @@ void PlayerCollider::doVisit(Exit *e) {
 
 void PlayerCollider::doVisit(Health *e) {
     player->addHealth(1);
-    getImpl()->destroyOther(e);
+    destroyOther(e);
 }

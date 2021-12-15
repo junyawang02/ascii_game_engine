@@ -1,7 +1,7 @@
 #ifndef STALKER_H
 #define STALKER_H
 
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "../../engine/entity/entity.h"
 #include "enemy.h"
 

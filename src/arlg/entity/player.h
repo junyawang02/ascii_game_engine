@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include "../../engine/util/acceptor.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "damageable.h"
 
 using std::pair;

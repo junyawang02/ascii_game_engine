@@ -3,14 +3,14 @@
 #include "../entity/enemy.h"
 #include "../entity/health.h"
 
-HealthCollider::HealthCollider(Health *h): Collider{h} {}
+HealthCollider::HealthCollider(Health *h): ARLGCollider{h} {}
 
 void HealthCollider::doVisit(Player *e) {
     e->addHealth(1);
-    getImpl()->destroySelf();
+    destroySelf();
 }
 
 void HealthCollider::doVisit(Enemy *e) {
     e->addHealth(1);
-    getImpl()->destroySelf();
+    destroySelf();
 }

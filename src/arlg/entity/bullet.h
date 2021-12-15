@@ -4,7 +4,7 @@
 #include "arlgEntity.h"
 #include "../../engine/util/acceptor.h"
 #include "../../engine/util/posn.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "../../engine/util/border.h"
 
 class Bullet: public Acceptor<ARLGEntity, Bullet, Collider> {

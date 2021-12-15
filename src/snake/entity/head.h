@@ -9,12 +9,12 @@ class Head : public Acceptor<Entity, Head, Collider> {
     bool toGrow;
     int count;
     void doOnTick() override;
-    void doEndState() override;
+    pair<bool, bool> doEndState() override;
 public:
     Head(int x, int y);
     void setGrow(bool g);
     bool getGrow();
     void startCount();
-}
+};
 
 #endif

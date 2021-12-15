@@ -3,8 +3,10 @@
 
 #include "../../config/colDecider.h"
 
+class Head;
+
 class HeadCollider: public Collider {
-    Head *h;
+    Head *head;
 public:
     HeadCollider(Head *h);
 };

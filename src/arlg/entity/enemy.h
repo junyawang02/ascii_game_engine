@@ -3,7 +3,7 @@
 
 #include "../../engine/entity/entity.h"
 #include "../../engine/util/acceptor.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "damageable.h"
 #include <memory>
 

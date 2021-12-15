@@ -1,9 +1,9 @@
 #ifndef BULLET_COLLIDER
 #define BULLET_COLLIDER
 
-#include "../../config/colDecider.h"
+#include "arlgCollider.h"
 
-class BulletCollider: public Collider {
+class BulletCollider: public ARLGCollider {
     Bullet *bullet;
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;

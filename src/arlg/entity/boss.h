@@ -1,7 +1,7 @@
 #ifndef BOSS_H
 #define BOSS_H
 
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "../../engine/entity/entity.h"
 #include "enemy.h"
 

@@ -1,7 +1,7 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-#include "../../config/colDecider.h"
+#include "../collider/arlgCollider.h"
 #include "arlgEntity.h"
 #include "../../engine/sprite/bitmap.h"
 #include "../../engine/util/acceptor.h"

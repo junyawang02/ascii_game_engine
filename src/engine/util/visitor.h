@@ -1,20 +1,24 @@
 #ifndef VISITOR_H
 #define VISITOR_H
 
-template <typename...>
-class Visitor {
+class Entity;
+
+template <typename B, typename...>
+class Visitor : public B {
 	void doVisit();
 public:
+    Visitor(Entity *s): B{s} {}
 	void visit() { doVisit(); }
     virtual ~Visitor() {}
 };
 
-template <typename T, typename... Ts>
-class Visitor<T, Ts...> : public Visitor<Ts...> {
+template <typename B, typename T, typename... Ts>
+class Visitor<B, T, Ts...> : public Visitor<B, Ts...> {
 private:
     virtual void doVisit(T *b) { return; }
 public:
-	using Visitor<Ts...>::visit;
+    Visitor(Entity *s): Visitor<B, Ts...>{s} {}
+	using Visitor<B, Ts...>::visit;
     void visit(T *b) { doVisit(b); }
 };
 

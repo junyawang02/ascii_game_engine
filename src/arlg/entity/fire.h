@@ -3,7 +3,7 @@
 
 #include "arlgEntity.h"
 #include "../../engine/util/acceptor.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 
 class Fire: public Acceptor<ARLGEntity, Fire, Collider> {
     void doOnTick() override;

@@ -6,10 +6,10 @@
 #include "../entity/popup.h"
 #include "../entity/boss.h"
 
-PopupCollider::PopupCollider(Popup *p) : Collider{p}, popup{p} {}
+PopupCollider::PopupCollider(Popup *p) : ARLGCollider{p}, popup{p} {}
 
 void PopupCollider::doVisit(Player *e) {
-    getImpl()->bounce(e);
+    bounce(e);
     e->addHealth(-1);
 }
 
@@ -17,16 +17,16 @@ void PopupCollider::doVisit(Enemy *e) {
     Boss *boss = dynamic_cast<Boss *>(e);
     if (boss)
         return;
-   getImpl()-> bounce(e);
+    bounce(e);
 }
 
 void PopupCollider::doVisit(Bullet *e) {
     if (!popup->invincible() && !e->isFromEnemy())
         popup->addHealth(-1);
-    getImpl()->destroyOther(e);
+    destroyOther(e);
 }
 
 void PopupCollider::doVisit(Health *e) {
     popup->addHealth(1);
-    getImpl()->destroyOther(e);
+    destroyOther(e);
 }

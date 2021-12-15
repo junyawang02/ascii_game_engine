@@ -1,11 +1,11 @@
 #ifndef ENEMY_COLLIDER
 #define ENEMY_COLLIDER
 
-#include "../../config/colDecider.h"
+#include "arlgCollider.h"
 
 class Enemy;
 
-class EnemyCollider: public Collider {
+class EnemyCollider: public ARLGCollider {
     Enemy *enemy;
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;

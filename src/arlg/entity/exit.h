@@ -3,7 +3,7 @@
 
 #include "arlgEntity.h"
 #include "../../engine/util/acceptor.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 
 class Exit: public Acceptor<ARLGEntity, Exit, Collider> {
     bool isOpen;

@@ -1,9 +1,9 @@
 #ifndef PLAYER_COLLIDER
 #define PLAYER_COLLIDER
 
-#include "../../config/colDecider.h"
+#include "arlgCollider.h"
 
-class PlayerCollider: public Collider {
+class PlayerCollider: public ARLGCollider {
     Player *player;
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;

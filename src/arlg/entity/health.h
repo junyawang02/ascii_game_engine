@@ -3,7 +3,7 @@
 
 #include "arlgEntity.h"
 #include "../../engine/util/acceptor.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 
 class Health: public Acceptor<ARLGEntity, Health, Collider> { 
 public:

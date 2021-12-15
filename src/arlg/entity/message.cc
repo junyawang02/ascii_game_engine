@@ -1,4 +1,5 @@
 #include "message.h"
+#include "../collider/arlgCollider.h"
 #include "../../engine/sprite/bitmap.h"
 #include "../../engine/sprite/still.h"
 #include "../../engine/util/acceptor.h"
@@ -12,7 +13,7 @@ using std::pair;
 using std::vector;
 
 Message::Message(bool win) : Acceptor{4, 1, make_unique<Still>(Bitmap{win ? SPRITES::win : SPRITES::loss}),
-                                      make_unique<Collider>(this)},
+                                      make_unique<ARLGCollider>(this)},
                              delay{3} {}
 
 pair<bool, bool> Message::doEndState() {

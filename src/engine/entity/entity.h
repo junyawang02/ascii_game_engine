@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "../movement/movement.h"
 #include "../movement/movementComponent.h"
 #include "../sprite/bitmap.h"

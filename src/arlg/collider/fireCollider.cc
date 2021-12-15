@@ -4,7 +4,7 @@
 #include "../entity/fire.h"
 #include "../entity/bullet.h"
 
-FireCollider::FireCollider(Fire *f) : Collider{f} {}
+FireCollider::FireCollider(Fire *f) : ARLGCollider{f} {}
 
 void FireCollider::doVisit(Player *e) {
     e->addHealth(-0.5);
@@ -15,7 +15,7 @@ void FireCollider::doVisit(Enemy *e) {
 }
 
 void FireCollider::doVisit(Bullet *e) {
-    getImpl()->stop(e);
-    getImpl()->destroySelf();
-    getImpl()->destroyOther(e);
+    stop(e);
+    destroySelf();
+    destroyOther(e);
 }

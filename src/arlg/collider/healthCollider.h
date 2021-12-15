@@ -1,9 +1,9 @@
 #ifndef HEALTH_COLLIDER
 #define HEALTH_COLLIDER
 
-#include "../../config/colDecider.h"
+#include "arlgCollider.h"
 
-class HealthCollider: public Collider {
+class HealthCollider: public ARLGCollider {
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;
 public:

@@ -3,10 +3,10 @@
 #include "../entity/bullet.h"
 #include "../entity/boss.h"
 
-BossCollider::BossCollider(Boss *b) : Collider{b}, boss{b} {}
+BossCollider::BossCollider(Boss *b) : ARLGCollider{b}, boss{b} {}
 
 void BossCollider::doVisit(Player *e) {
-    getImpl()->bounce(e);
+    bounce(e);
     boss->changeDirection();
     e->addHealth(-1);
 }
@@ -14,5 +14,5 @@ void BossCollider::doVisit(Player *e) {
 void BossCollider::doVisit(Bullet *e) {
     if (!e->isFromEnemy())
         boss->addHealth(-1);
-    getImpl()->destroyOther(e);
+    destroyOther(e);
 }

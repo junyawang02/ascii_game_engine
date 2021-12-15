@@ -6,17 +6,17 @@
 #include "../entity/popup.h"
 #include "../entity/snake.h"
 
-BulletCollider::BulletCollider(Bullet *b) : Collider{b}, bullet{b} {}
+BulletCollider::BulletCollider(Bullet *b) : ARLGCollider{b}, bullet{b} {}
 
 void BulletCollider::doVisit(Player *e) {
     if (!bullet->invincible()) {
-        getImpl()->destroySelf();
+        destroySelf();
         e->addHealth(-1);
     }
 }
 
 void BulletCollider::doVisit(Enemy *e) {
-    getImpl()->destroySelf();
+    destroySelf();
     if (!bullet->isFromEnemy()) {
         Popup *p = dynamic_cast<Popup *>(e);
         if (p) {
@@ -35,12 +35,12 @@ void BulletCollider::doVisit(Enemy *e) {
 }
 
 void BulletCollider::doVisit(Bullet *e) {
-    getImpl()->destroySelf();
-    getImpl()->destroyOther(e);
+    destroySelf();
+    destroyOther(e);
 }
 
 void BulletCollider::doVisit(Fire *e) {
-    getImpl()->stop(e);
-    getImpl()->destroySelf();
-    getImpl()->destroyOther(e);
+    stop(e);
+    destroySelf();
+    destroyOther(e);
 }

@@ -2,7 +2,7 @@
 #define WALKER_H
 
 #include "../../engine/entity/entity.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "enemy.h"
 
 class Walker: public Enemy {

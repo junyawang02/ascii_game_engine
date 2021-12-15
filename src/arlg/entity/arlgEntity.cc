@@ -1,5 +1,5 @@
 #include "arlgEntity.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 #include "../../engine/entity/entity.h"
 #include "../../engine/movement/movementComponent.h"
 #include "../../engine/sprite/sprite.h"
