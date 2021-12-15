@@ -6,7 +6,7 @@
 #include "../entity/health.h"
 #include "../entity/boss.h"
 
-PlayerCollider::PlayerCollider(Player *p): ARLGCollider{p}, player{p} {}
+PlayerCollider::PlayerCollider(Player *p): Collider{p}, player{p} {}
 
 void PlayerCollider::doVisit(Player *e) {
     bounce(e);

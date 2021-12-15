@@ -6,7 +6,7 @@
 #include "../entity/popup.h"
 #include "../entity/boss.h"
 
-PopupCollider::PopupCollider(Popup *p) : ARLGCollider{p}, popup{p} {}
+PopupCollider::PopupCollider(Popup *p) : Collider{p}, popup{p} {}
 
 void PopupCollider::doVisit(Player *e) {
     bounce(e);

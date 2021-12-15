@@ -1,9 +1,9 @@
 #ifndef FIRE_COLLIDER
 #define FIRE_COLLIDER
 
-#include "arlgCollider.h"
+#include "../../config/collider.h"
 
-class FireCollider: public ARLGCollider {
+class FireCollider: public Collider {
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;
     void doVisit(Bullet *e) override;

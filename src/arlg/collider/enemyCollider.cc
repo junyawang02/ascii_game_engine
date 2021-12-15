@@ -5,7 +5,7 @@
 #include "../entity/health.h"
 #include "../entity/player.h"
 
-EnemyCollider::EnemyCollider(Enemy *p) : ARLGCollider{p}, enemy{p} {}
+EnemyCollider::EnemyCollider(Enemy *p) : Collider{p}, enemy{p} {}
 
 void EnemyCollider::doVisit(Player *e) {
     bounce(e);

@@ -1,5 +1,5 @@
 #include "head.h"
-#include "../../engine/movement/holdControl.h"
+#include "../movement/holdControl.h"
 #include "../../engine/sprite/bitmap.h"
 #include "../../engine/sprite/still.h"
 #include "../../engine/util/acceptor.h"
@@ -10,11 +10,11 @@ using std::make_unique;
 using std::pair;
 
 Head::Head(int x, int y) : Acceptor{x, y, make_unique<Still>(Bitmap{'S'}),
-                                    make_unique<HoldControl>(c),
+                                    make_unique<HoldControl>(0),
                                     make_unique<HeadCollider>(this)},
                            toGrow{false}, count{-1} {}
 
-void doOnTick() {
+void Head::doOnTick() {
     if (count > 0) {
         --count;
     } else if (count == 0) {

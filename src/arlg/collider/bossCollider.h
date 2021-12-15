@@ -1,11 +1,11 @@
 #ifndef BOSS_COLLIDER
 #define BOSS_COLLIDER
 
-#include "arlgCollider.h"
+#include "../../config/collider.h"
 
 class Boss;
 
-class BossCollider: public ARLGCollider {
+class BossCollider: public Collider {
     Boss *boss;
     void doVisit(Player *e) override;
     void doVisit(Bullet *e) override;

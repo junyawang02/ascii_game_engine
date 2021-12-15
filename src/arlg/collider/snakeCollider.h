@@ -1,11 +1,11 @@
 #ifndef SNAKE_COLLIDER
 #define SNAKE_COLLIDER
 
-#include "arlgCollider.h"
+#include "../../config/collider.h"
 
 class Snake;
 
-class SnakeCollider: public ARLGCollider {
+class SnakeCollider: public Collider {
     Snake *snake;
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;

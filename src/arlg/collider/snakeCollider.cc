@@ -6,7 +6,7 @@
 #include "../entity/snake.h"
 #include "../entity/boss.h"
 
-SnakeCollider::SnakeCollider(Snake *s) : ARLGCollider{s}, snake{s} {}
+SnakeCollider::SnakeCollider(Snake *s) : Collider{s}, snake{s} {}
 
 void SnakeCollider::doVisit(Player *e) {
     bounce(e);

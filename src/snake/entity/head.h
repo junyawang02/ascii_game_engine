@@ -3,7 +3,7 @@
 
 #include "../../engine/entity/entity.h"
 #include "../../engine/util/acceptor.h"
-#include "../../config/colDecider.h"
+#include "../../config/collider.h"
 
 class Head : public Acceptor<Entity, Head, Collider> {
     bool toGrow;

@@ -1,11 +1,11 @@
 #ifndef EXIT_COLLIDER
 #define EXIT_COLLIDER
 
-#include "arlgCollider.h"
+#include "../../config/collider.h"
 
 class Exit;
 
-class ExitCollider: public ARLGCollider {
+class ExitCollider: public Collider {
     Exit *exit;
     void doVisit(Player *e) override;
 public:

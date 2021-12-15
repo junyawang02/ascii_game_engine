@@ -1,11 +1,11 @@
 #ifndef POPUP_COLLIDER
 #define POPUP_COLLIDER
 
-#include "arlgCollider.h"
+#include "../../config/collider.h"
 
 class Popup;
 
-class PopupCollider: public ARLGCollider {
+class PopupCollider: public Collider {
     Popup *popup;
     void doVisit(Player *e) override;
     void doVisit(Enemy *e) override;

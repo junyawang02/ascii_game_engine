@@ -6,7 +6,7 @@
 #include "../entity/popup.h"
 #include "../entity/snake.h"
 
-BulletCollider::BulletCollider(Bullet *b) : ARLGCollider{b}, bullet{b} {}
+BulletCollider::BulletCollider(Bullet *b) : Collider{b}, bullet{b} {}
 
 void BulletCollider::doVisit(Player *e) {
     if (!bullet->invincible()) {

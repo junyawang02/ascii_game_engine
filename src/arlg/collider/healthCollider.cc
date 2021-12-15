@@ -3,7 +3,7 @@
 #include "../entity/enemy.h"
 #include "../entity/health.h"
 
-HealthCollider::HealthCollider(Health *h): ARLGCollider{h} {}
+HealthCollider::HealthCollider(Health *h): Collider{h} {}
 
 void HealthCollider::doVisit(Player *e) {
     e->addHealth(1);

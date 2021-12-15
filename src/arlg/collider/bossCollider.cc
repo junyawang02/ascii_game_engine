@@ -3,7 +3,7 @@
 #include "../entity/bullet.h"
 #include "../entity/boss.h"
 
-BossCollider::BossCollider(Boss *b) : ARLGCollider{b}, boss{b} {}
+BossCollider::BossCollider(Boss *b) : Collider{b}, boss{b} {}
 
 void BossCollider::doVisit(Player *e) {
     bounce(e);

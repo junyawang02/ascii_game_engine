@@ -4,7 +4,7 @@
 #include "../entity/fire.h"
 #include "../entity/bullet.h"
 
-FireCollider::FireCollider(Fire *f) : ARLGCollider{f} {}
+FireCollider::FireCollider(Fire *f) : Collider{f} {}
 
 void FireCollider::doVisit(Player *e) {
     e->addHealth(-0.5);
