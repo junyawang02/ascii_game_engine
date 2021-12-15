@@ -7,6 +7,7 @@ class ARLG : public Game {
     void doEndState(bool win) override;
 public:
     ARLG();
+    void skipToLevel(int n);
 };
 
 #endif

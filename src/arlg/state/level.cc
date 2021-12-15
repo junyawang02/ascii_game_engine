@@ -1,7 +1,9 @@
 #include "level.h"
 #include "../../engine/entity/entity.h"
+#include "../../engine/model/game.h"
 #include "../../engine/physics/physics.h"
 #include "../../engine/state/state.h"
+#include "../../engine/util/line.h"
 #include "../../engine/util/myRandom.h"
 #include "../../engine/util/posn.h"
 #include "../entity/arlgEntity.h"
@@ -11,6 +13,7 @@
 #include "../entity/player.h"
 #include <list>
 #include <memory>
+#include <string>
 
 using std::list;
 using std::make_unique;
@@ -21,13 +24,19 @@ class Game;
 Level::Level() : State{make_unique<Physics>(true)} {}
 
 void Level::doCreate(Game &g) {
+    string stage = "Level " + std::to_string(getNumber());
+    g.updateViews(Line::L2, stage);
+    string healthMessage = "Health: 5";
+    g.updateViews(Line::L1, healthMessage);
+    
     list<unique_ptr<Entity>> ents;
     list<Entity *> entPtrs;
 
     // make player
     Posn playerPos = Posn{myRandom(1, 78), myRandom(1, 20)};
     unique_ptr<Player> player = make_unique<Player>(playerPos.x, playerPos.y, 0);
-    entPtrs.push_back(player.get());
+    Player *playerp = player.get();
+    entPtrs.push_back(playerp);
     ents.emplace_back(std::move(player));
 
     // make exit
@@ -45,7 +54,7 @@ void Level::doCreate(Game &g) {
         int y = myRandom(1, 20);
         unique_ptr<Entity> e;
         if (i < numEnemies) {
-            e = getEnemy(x, y);
+            e = getEnemy(x, y, playerp);
         } else {
             e = make_unique<Fire>(x, y);
         }
@@ -76,4 +85,6 @@ void Level::doOnTick(Game &g) {
     addEntity(0, std::move(exit));
 }
 
-unique_ptr<Damageable> Level::getEnemy(int x, int y) { return doGetEnemy(x, y); }
+int Level::getNumber() { return doGetNumber(); }
+
+unique_ptr<Enemy> Level::getEnemy(int x, int y, Player *p) { return doGetEnemy(x, y, p); }
