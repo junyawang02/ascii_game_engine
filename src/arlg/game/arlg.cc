@@ -7,6 +7,7 @@
 #include "../state/level2.h"
 #include "../state/level3.h"
 #include "../state/level4.h"
+#include "../state/level5.h"
 #include "../state/loss.h"
 #include "../state/win.h"
 #include <deque>
@@ -23,6 +24,7 @@ ARLG::ARLG() : Game{} {
     addState(make_unique<Level2>());
     addState(make_unique<Level3>());
     addState(make_unique<Level4>());
+    addState(make_unique<Level5>());
     addState(make_unique<Win>());
     addState(make_unique<Loss>());
     unique_ptr<Keyboard> k = make_unique<Keyboard>();
