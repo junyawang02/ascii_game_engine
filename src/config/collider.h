@@ -16,8 +16,9 @@ class Fire;
 class Head;
 class Fruit;
 class Tail;
+class Blackout;
 
-class Collider : public Visitor<ColliderBase, Player, Bullet, Enemy, Exit, Health, Fire, Message, Head, Fruit, Tail> {
+class Collider : public Visitor<ColliderBase, Player, Bullet, Enemy, Exit, Health, Fire, Message, Head, Fruit, Tail, Blackout> {
 public:
     Collider(Entity *s);
 };

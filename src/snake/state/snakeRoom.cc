@@ -9,6 +9,7 @@
 #include "../entity/fruit.h"
 #include "../entity/head.h"
 #include "../entity/tail.h"
+#include "../entity/blackout.h"
 #include <list>
 #include <memory>
 #include <string>
@@ -36,7 +37,7 @@ void SnakeRoom::doCreate(Game &g) {
     for (int i = 0; i < 5; ++i) {
         int x = myRandom(1, 78);
         int y = myRandom(1, 20);
-        unique_ptr<Entity> e = make_unique<Fruit>(x, y);
+        unique_ptr<Fruit> e = make_unique<Fruit>(x, y);
         while (checkCollisions(e.get(), entPtrs)) {
             x = myRandom(1, 78);
             y = myRandom(1, 20);
@@ -49,9 +50,8 @@ void SnakeRoom::doCreate(Game &g) {
 }
 
 void SnakeRoom::doOnTick(Game &g) {
-    if (myRandom(1, 7) == 3) {
-        unique_ptr<Entity> e = make_unique<Fruit>(myRandom(1, 78), myRandom(1, 20));
-        addEntity(0, std::move(e));
+    if (myRandom(1, 20) == 3) {
+        addEntity(0,  make_unique<Fruit>(myRandom(1, 78), myRandom(1, 20)));
     }
     if (head->getGrow()) {
         ++score;
@@ -72,5 +72,8 @@ void SnakeRoom::doOnTick(Game &g) {
         }
         head->addTail(newTail.get());
         addEntity(0, std::move(newTail));
+    }
+    if (myRandom(1, 10) == 5 && getEntities(1).empty()) {
+        addEntity(1, make_unique<Blackout>());
     }
 }
