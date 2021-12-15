@@ -19,8 +19,6 @@ using std::list;
 using std::make_unique;
 using std::unique_ptr;
 
-class Game;
-
 Level::Level() : State{make_unique<Physics>(true)} {}
 
 void Level::doCreate(Game &g) {

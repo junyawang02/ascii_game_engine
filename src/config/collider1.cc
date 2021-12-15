@@ -5,12 +5,12 @@
 Collider::Collider(Entity *s): self{s} {};
 
 void Collider::bounceSelf(Entity *s) {
-    Posn vel = s->getVelocity();
+    Posn vel = s->getPastVelocity();
     self->setPos(self->getPos() + vel * 2);
 }
 
 void Collider::bounceOther(Entity *s) {
-    Posn vel = s->getVelocity();
+    Posn vel = s->getPastVelocity();
     s->setPos(s->getPos() - vel * 2);
 }
 

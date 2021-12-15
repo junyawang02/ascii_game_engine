@@ -46,18 +46,18 @@ void Boss::doOnTick() {
         addHealth(30);
         angry = true;
         nextForm();
-        Posn vel = getVelocity();
+        Posn vel = getPastVelocity();
         addMovement("linear", make_unique<Linear>(vel.x * 2, vel.y));
     }
 }
 
 void Boss::changeDirection() {
-    Posn vel = getVelocity();
+    Posn vel = getPastVelocity();
     addMovement("linear", make_unique<Linear>(-vel.x, -vel.y));
 }
 
 void Boss::doBorderCollide(Border b) {
-    Posn vel = getVelocity();
+    Posn vel = getPastVelocity();
     switch (b) {
     case Border::U:
         addY(1);

@@ -104,10 +104,11 @@ void Entity::removeMovement(string s) {
     mvt->removeMovement(s);
 }
 
-Posn Entity::getVelocity() { return mvt->getVelocity(*this); }
+Posn Entity::getPastVelocity() { return pastVel; }
 
 Posn &Entity::moveVelocity() {
     vel = mvt->getVelocity(*this);
+    pastVel = vel;
     return vel;
 }
 

@@ -26,6 +26,7 @@ class Entity {
     bool destroy;
     Posn pos;
     Posn vel;
+    Posn pastVel;
     unique_ptr<Sprite> spr;
     unique_ptr<Movement> mvt;
     unique_ptr<Collider> col;
@@ -74,7 +75,7 @@ public:
     void addMovement(string s, unique_ptr<MovementComponent> m);
     void removeMovement(string s);
     Posn &moveVelocity();
-    Posn getVelocity();
+    Posn getPastVelocity();
     void setVelocity(Posn v);
 
     list<unique_ptr<Entity>> &getSpawns();

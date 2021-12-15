@@ -1,7 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../../engine/entity/entity.h"
 #include "../../engine/util/acceptor.h"
 #include "../../config/colDecider.h"
 #include "damageable.h"
