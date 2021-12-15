@@ -8,6 +8,7 @@
 class Player;
 
 class Stalker : public Enemy {
+    void doOnTick() override;
 public:
     Stalker(int x, int y, Player *p);
 };

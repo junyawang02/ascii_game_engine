@@ -4,6 +4,7 @@
 #include "../entity/bullet.h"
 #include "../entity/health.h"
 #include "../entity/snake.h"
+#include "../entity/boss.h"
 
 SnakeCollider::SnakeCollider(Snake *s) : Collider{s}, snake{s} {}
 
@@ -13,6 +14,9 @@ void SnakeCollider::doVisit(Player *e) {
 }
 
 void SnakeCollider::doVisit(Enemy *e) {
+    Boss *boss = dynamic_cast<Boss *>(e);
+    if (boss)
+        return;
     bounce(e);
 }
 

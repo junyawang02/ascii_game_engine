@@ -50,6 +50,7 @@ public:
     void decrementCount();
     void resetCount();
     void flagDestroy();
+    void setDestroy(bool des);
     bool getDestroy();
 
     const Posn &getPos() const;

@@ -1,8 +1,9 @@
 #include "enemyCollider.h"
-#include "../entity/enemy.h"
-#include "../entity/player.h"
+#include "../entity/boss.h"
 #include "../entity/bullet.h"
+#include "../entity/enemy.h"
 #include "../entity/health.h"
+#include "../entity/player.h"
 
 EnemyCollider::EnemyCollider(Enemy *p) : Collider{p}, enemy{p} {}
 
@@ -12,6 +13,9 @@ void EnemyCollider::doVisit(Player *e) {
 }
 
 void EnemyCollider::doVisit(Enemy *e) {
+    Boss *boss = dynamic_cast<Boss *>(e);
+    if (boss)
+        return;
     bounce(e);
 }
 

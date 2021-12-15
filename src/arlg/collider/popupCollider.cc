@@ -4,6 +4,7 @@
 #include "../entity/bullet.h"
 #include "../entity/health.h"
 #include "../entity/popup.h"
+#include "../entity/boss.h"
 
 PopupCollider::PopupCollider(Popup *p) : Collider{p}, popup{p} {}
 
@@ -13,6 +14,9 @@ void PopupCollider::doVisit(Player *e) {
 }
 
 void PopupCollider::doVisit(Enemy *e) {
+    Boss *boss = dynamic_cast<Boss *>(e);
+    if (boss)
+        return;
     bounce(e);
 }
 

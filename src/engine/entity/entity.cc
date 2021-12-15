@@ -63,6 +63,8 @@ void Entity::resetCount() { countdown = 5; }
 
 void Entity::flagDestroy() { destroy = true; }
 
+void Entity::setDestroy(bool des) { destroy = des; }
+
 bool Entity::getDestroy() { return destroy; }
 
 const Posn &Entity::getPos() const { return pos; }
