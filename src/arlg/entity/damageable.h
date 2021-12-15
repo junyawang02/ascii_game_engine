@@ -10,14 +10,14 @@
 using std::unique_ptr;
 
 class Damageable : public ARLGEntity {
-    int health;
+    float health;
 
 public:
     Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m,
-               unique_ptr<Collider> c, int health);
-    Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c, int health);
+               unique_ptr<Collider> c, float health);
+    Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c, float health);
     virtual ~Damageable() = default;
-    void addHealth(int n);
+    void addHealth(float n);
     int getHealth();
 };
 

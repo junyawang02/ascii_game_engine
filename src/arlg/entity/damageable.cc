@@ -7,11 +7,11 @@
 
 using std::unique_ptr;
 
-Damageable::Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m, unique_ptr<Collider> c, int h) : ARLGEntity{x, y, std::move(s), std::move(m), std::move(c)}, health{h} {}
+Damageable::Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m, unique_ptr<Collider> c, float health) : ARLGEntity{x, y, std::move(s), std::move(m), std::move(c)}, health{health} {}
 
-Damageable::Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c, int h) : ARLGEntity{x, y, std::move(s), std::move(c)}, health{h} {}
+Damageable::Damageable(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c, float health) : ARLGEntity{x, y, std::move(s), std::move(c)}, health{health} {}
 
-void Damageable::addHealth(int n) {
+void Damageable::addHealth(float n) {
     health += n;
     if (health < 1)
         flagDestroy();

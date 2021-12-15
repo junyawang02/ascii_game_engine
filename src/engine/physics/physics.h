@@ -22,6 +22,7 @@ public:
     void solidBorder(bool s);
     bool checkCollision(Entity *ent, Entity *other);
     void step(list<Entity *> &entities);
+    void singleStep(Entity *e, list<Entity *> &entities);
     bool inBounds(Entity *e);
 };
 

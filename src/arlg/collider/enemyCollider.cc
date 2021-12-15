@@ -3,6 +3,7 @@
 #include "../entity/walker.h"
 #include "../entity/player.h"
 #include "../entity/bullet.h"
+#include "../entity/health.h"
 
 EnemyCollider::EnemyCollider(Enemy *p) : Collider{p}, enemy{p} {}
 
@@ -17,5 +18,10 @@ void EnemyCollider::doVisit(Enemy &e) {
 
 void EnemyCollider::doVisit(Bullet &e) {
     enemy->addHealth(-1);
+    destroyOther(e);
+}
+
+void EnemyCollider::doVisit(Health &e) {
+    enemy->addHealth(1);
     destroyOther(e);
 }

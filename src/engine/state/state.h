@@ -25,6 +25,7 @@ class State {
     virtual void doCreate(Game &g);
     virtual void doOnTick(Game &g);
     void endState(bool win, Game &g);
+    void processEntities(Game &g);
 
 public:
     State(unique_ptr<Physics> p);

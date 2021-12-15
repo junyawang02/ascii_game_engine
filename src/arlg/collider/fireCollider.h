@@ -1,15 +1,14 @@
-#ifndef BULLET_COLLIDER
-#define BULLET_COLLIDER
+#ifndef FIRE_COLLIDER
+#define FIRE_COLLIDER
 
 #include "../../config/colDecider.h"
 
-class BulletCollider: public Collider {
+class FireCollider: public Collider {
     void doVisit(Player &e) override;
     void doVisit(Enemy &e) override;
     void doVisit(Bullet &e) override;
-    void doVisit(Fire &e) override;
 public:
-    BulletCollider(Bullet *b);
+    FireCollider(Fire *f);
 };
 
 #endif

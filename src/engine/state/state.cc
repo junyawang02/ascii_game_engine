@@ -31,17 +31,7 @@ void State::create(Game &g) {
         }
 }
 
-void State::onTick(Game &g) {
-    // move all entities
-    for (auto &level : entities) {
-        list<Entity *> entityList;
-        for (auto &entity : level.second) {
-            entityList.push_back(entity.get());
-        }
-        phys->step(entityList);
-    }
-    doOnTick(g);
-
+void State::processEntities(Game &g) {
     // end game, print statuses, destroy entities, and spawn entities
     // based on flags from entities
     for (auto &level : entities) {
@@ -61,6 +51,19 @@ void State::onTick(Game &g) {
                 it = level.second.erase(it);
         }
     }
+}
+
+void State::onTick(Game &g) {
+    doOnTick(g);
+    // move all entities
+    for (auto &level : entities) {
+        list<Entity *> entityList;
+        for (auto &entity : level.second) {
+            entityList.push_back(entity.get());
+        }
+        phys->step(entityList);
+    }
+    processEntities(g);
 }
 
 void State::addEntity(int height, unique_ptr<Entity> e) {

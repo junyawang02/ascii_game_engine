@@ -9,6 +9,7 @@ class PlayerCollider: public Collider {
     void doVisit(Enemy &e) override;
     void doVisit(Bullet &e) override;
     void doVisit(Exit &e) override;
+    void doVisit(Health &e) override;
 public:
     PlayerCollider(Player *p);
 };

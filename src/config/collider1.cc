@@ -27,3 +27,16 @@ void Collider::destroyOther(Entity &s) {
     s.flagDestroy();
 }
 
+void Collider::stopSelf() {
+    self->setVelocity(Posn{0, 0});
+}
+
+void Collider::stopOther(Entity &s) {
+    s.setVelocity(Posn{0, 0});
+}
+
+void Collider::stop(Entity &s) {
+    stopSelf();
+    stopOther(s);
+}
+

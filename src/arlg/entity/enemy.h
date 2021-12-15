@@ -8,8 +8,8 @@
 
 class Enemy: public Acceptor<Damageable, Enemy, Collider> {
 public:
-    Enemy(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> mvt, int health);
-    Enemy(int x, int y, unique_ptr<Sprite> s, int health);
+    Enemy(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> mvt, float health);
+    Enemy(int x, int y, unique_ptr<Sprite> s, float health);
     bool isEnemy() override;
 };
 

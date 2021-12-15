@@ -8,9 +8,11 @@ class Player;
 class Bullet;
 class Enemy;
 class Exit;
+class Health;
 class Message;
+class Fire;
 
-class Collider : public Visitor<Player, Bullet, Enemy, Exit, Message>{
+class Collider : public Visitor<Player, Bullet, Enemy, Exit, Health, Fire, Message> {
 protected:
     Entity *self;
 public:
@@ -20,6 +22,9 @@ public:
     void bounce(Entity &s);
     void destroySelf();
     void destroyOther(Entity &s);
+    void stopSelf();
+    void stopOther(Entity &s);
+    void stop(Entity &s);
 };
 
 #endif
