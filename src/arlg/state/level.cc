@@ -34,7 +34,7 @@ void Level::doCreate(Game &g) {
     unique_ptr<Exit> exit = make_unique<Exit>(exitPos.x, exitPos.y);
     entPtrs.push_back(exit.get());
 
-    int numEnemies = myRandom(0, 0);
+    int numEnemies = myRandom(0, 10);
     for (int i = 0; i < numEnemies; ++i) {
         int x = myRandom(1, 78);
         int y = myRandom(1, 20);

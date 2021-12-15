@@ -21,12 +21,20 @@ Game::Game(unique_ptr<State> s) : clock{Clock{}} {
 }
 
 void Game::doEndState(bool win) {
-    states.pop_front();
-    go();
+    popState(1);
 }
 
 void Game::addState(unique_ptr<State> s) {
     states.push_back(std::move(s));
+}
+
+void Game::popState(size_t n) {
+    size_t popped = 0;
+    while (!states.empty() && popped < n) {
+        states.pop_front();
+        ++popped;
+    }
+    go();
 }
 
 void Game::go() {
@@ -63,3 +71,5 @@ void Game::stop() {
 }
 
 vector<pair<const Posn &, const Bitmap &>> Game::drawList() { return states[0]->drawList(); }
+
+size_t Game::numStates() { return states.size(); }

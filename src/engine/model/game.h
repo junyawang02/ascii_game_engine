@@ -20,6 +20,7 @@ class Game : public Model {
 
 protected:
     void addState(unique_ptr<State> s);
+    void popState(size_t n);
 
 public:
     Game();
@@ -29,6 +30,7 @@ public:
     void stop();
     vector<pair<const Posn &, const Bitmap &>> drawList();
     void endState(bool win);
+    size_t numStates();
 };
 
 #endif

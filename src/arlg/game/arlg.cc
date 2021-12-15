@@ -28,3 +28,15 @@ ARLG::ARLG() : Game{} {
     addView(make_unique<GameView>(this));
     go();
 }
+
+void ARLG::doEndState(bool win) {
+    if (numStates() == 2) {
+        // on win screen, skip loss
+        popState(2);
+    } else if (!win) {
+        // go to loss scren
+        popState(numStates() - 1);
+    } else {
+        popState(1);
+    }
+}

@@ -21,7 +21,7 @@ pair<bool, bool> Message::doEndState() {
         const vector<Action> &acts = getActions();
         for (const auto &act : acts) {
             if (act != Action::NONE)
-                return pair<bool, bool>{true, false};
+                return pair<bool, bool>{true, true};
         }
     }
     return pair<bool, bool>{false, false};
