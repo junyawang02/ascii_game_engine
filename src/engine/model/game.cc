@@ -53,8 +53,6 @@ void Game::go() {
             updateViews();
             displayViews();
             states[0]->onTick(*this);
-            if (inputs[0] == Action::ESCAPE)
-                stop();
         }
     }
 }
