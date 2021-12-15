@@ -10,16 +10,9 @@
 
 using std::make_unique;
 
-Bullet::Bullet(Posn p, int x, int y, char c, bool iframe) : Acceptor{p.x + x/2, p.y + y/2, make_unique<Still>(Bitmap{c}),
+Bullet::Bullet(Posn p, int x, int y, char c) : Acceptor{p.x + x/2, p.y + y/2, make_unique<Still>(Bitmap{c}),
                                                         make_unique<Linear>(x, y),
-                                                        make_unique<BulletCollider>(this)},
-                                                        iframes{iframe? 2 : 0} {}
+                                                        make_unique<BulletCollider>(this)} {}
 
-void Bullet::doOnTick() {
-    if (iframes > 0)
-        --iframes;
-}
 
 void Bullet::doBorderCollide(Border b) { flagDestroy(); }
-
-bool Bullet::invincible() { return iframes; }

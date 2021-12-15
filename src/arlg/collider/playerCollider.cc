@@ -17,7 +17,7 @@ void PlayerCollider::doVisit(Enemy &e) {
 }
 
 void PlayerCollider::doVisit(Bullet &e) {
-    if (!e.invincible()) {
+    if (!player->invincible()) {
         player->addHealth(-1);
         destroyOther(e);
     }

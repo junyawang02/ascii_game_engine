@@ -4,10 +4,10 @@
 #include "../entity/bullet.h"
 #include "../entity/fire.h"
 
-BulletCollider::BulletCollider(Bullet *b) : Collider{b}, bullet{b} {}
+BulletCollider::BulletCollider(Bullet *b) : Collider{b} {}
 
 void BulletCollider::doVisit(Player &e) {
-    if (!bullet->invincible()) {
+    if (!e.invincible()) {
         destroySelf();
         e.addHealth(-1);
     }
