@@ -1,4 +1,4 @@
-CXX = g++ -DGAME=1
+CXX = g++
 CXXFLAGS = -std=c++14 -Wall -g -MMD
 SRC = src/engine
 GAME1 = src/arlg
@@ -21,12 +21,12 @@ GAME2_DEPENDS = ${GAME2_OBJECTS:.o=.d}
 all: game1 game2
 
 game1: $(OBJECTS) $(CONFIG_OBJECTS) $(GAME1_OBJECTS)
-	$(CXX) -DGAME=1 $(OBJECTS) $(CONFIG_OBJECTS) $(GAME1_OBJECTS) -o game1 -lncurses
+	$(CXX) $(OBJECTS) $(CONFIG_OBJECTS) $(GAME1_OBJECTS) -o game1 -lncurses
 
 -include ${DEPENDS} $(CONFIG_DEPENDS) $(GAME1_DEPENDS)
 
 game2: $(OBJECTS) $(CONFIG_OBJECTS) $(GAME2_OBJECTS)
-	$(CXX) -DGAME=2 $(OBJECTS) $(CONFIG_OBJECTS) $(GAME2_OBJECTS) -o game2 -lncurses
+	$(CXX) $(OBJECTS) $(CONFIG_OBJECTS) $(GAME2_OBJECTS) -o game2 -lncurses
 
 -include ${DEPENDS} $(CONFIG_DEPENDS) $(GAME2_DEPENDS)
 

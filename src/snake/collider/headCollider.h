@@ -7,6 +7,7 @@ class Head;
 
 class HeadCollider: public Collider {
     Head *head;
+    void doVisit(Fruit *e) override;
 public:
     HeadCollider(Head *h);
 };

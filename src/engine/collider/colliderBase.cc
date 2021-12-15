@@ -1,6 +1,6 @@
 #include "colliderBase.h"
-#include"../engine/entity/entity.h"
-#include "../engine/util/posn.h"
+#include"../entity/entity.h"
+#include "../util/posn.h"
 
 ColliderBase::ColliderBase(Entity *s): self{s} {};
 

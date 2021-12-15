@@ -7,6 +7,7 @@
 #include "../../engine/util/myRandom.h"
 #include "../../engine/util/posn.h"
 #include "../entity/head.h"
+#include "../entity/fruit.h"
 #include <list>
 #include <memory>
 #include <string>
@@ -30,39 +31,25 @@ void SnakeRoom::doCreate(Game &g) {
     entPtrs.push_back(head);
     ents.emplace_back(std::move(player));
 
-    // // spawn fruits
-    // int numEnemies = myRandom(5, 10);
-    // int numFires = myRandom(7, 12);
-    // for (int i = 0; i < numEnemies + numFires; ++i) {
-    //     int x = myRandom(1, 78);
-    //     int y = myRandom(1, 20);
-    //     unique_ptr<Entity> e;
-    //     if (i < numEnemies) {
-    //         e = getEnemy(x, y, playerp);
-    //     } else {
-    //         e = make_unique<Fire>(x, y);
-    //     }
-    //     while (checkCollisions(e.get(), entPtrs)) {
-    //         x = myRandom(1, 78);
-    //         y = myRandom(1, 20);
-    //         e->setPos(x, y);
-    //     }
-    //     entPtrs.push_back(e.get());
-    //     ents.emplace_back(std::move(e));
-    // }
+    // spawn fruits
+    for (int i = 0; i < 5; ++i) {
+        int x = myRandom(1, 78);
+        int y = myRandom(1, 20);
+        unique_ptr<Entity> e = make_unique<Fruit>(x, y);
+        while (checkCollisions(e.get(), entPtrs)) {
+            x = myRandom(1, 78);
+            y = myRandom(1, 20);
+            e->setPos(x, y);
+        }
+        entPtrs.push_back(e.get());
+        ents.emplace_back(std::move(e));
+    }
     addEntities(0, ents);
 }
 
 void SnakeRoom::doOnTick(Game &g) {
-    // list<Entity *> entityList = getEntities(0);
-    // for (auto &entity : entityList) {
-    //     ARLGEntity *ent = static_cast<ARLGEntity *>(entity); // downcast
-    //     if (ent->isEnemy())
-    //         return;
-    // }
-    // list<Entity *> exitLevel = getEntities(-1);
-    // Posn exitPos = (*exitLevel.begin())->getPos();
-    // unique_ptr<Exit> exit = make_unique<Exit>(exitPos.x, exitPos.y);
-    // exit->open();
-    // addEntity(0, std::move(exit));
+    if (myRandom(1, 4) == 3) {
+        unique_ptr<Entity> e = make_unique<Fruit>(myRandom(1, 78), myRandom(1, 20));
+        addEntity(0, std::move(e));
+    }
 }

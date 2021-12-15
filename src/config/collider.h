@@ -2,7 +2,7 @@
 #define COLLIDER_H
 
 #include "../engine/util/visitor.h"
-#include "colliderBase.h"
+#include "../engine/collider/colliderBase.h"
 #include <memory>
 
 class Entity;
@@ -14,8 +14,10 @@ class Health;
 class Message;
 class Fire;
 class Head;
+class Fruit;
+class Tail;
 
-class Collider : public Visitor<ColliderBase, Player, Bullet, Enemy, Exit, Health, Fire, Message, Head> {
+class Collider : public Visitor<ColliderBase, Player, Bullet, Enemy, Exit, Health, Fire, Message, Head, Fruit, Tail> {
 public:
     Collider(Entity *s);
 };
