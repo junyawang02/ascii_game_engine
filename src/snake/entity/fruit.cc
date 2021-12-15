@@ -14,7 +14,7 @@
 using std::make_unique;
 using std::vector;
 
-Fruit::Fruit(int x, int y) : Acceptor{x, y, make_unique<Animated>(vector<Bitmap>{Bitmap{'o'}, Bitmap{'O'}}),
+Fruit::Fruit(int x, int y) : Acceptor{x, y, make_unique<Animated>(vector<Bitmap>{Bitmap{'o'}, Bitmap{'O'}, Bitmap{2, 2, 'o'}}),
                                     make_unique<FruitCollider>(this)} {}
 
 void Fruit::doCreate() {
@@ -39,4 +39,9 @@ void Fruit::doCreate() {
             addMovement("gravitate", make_unique<Gravitate>(b, 1));
         }
     }
+}
+
+void Fruit::doOnTick() {
+    if (myRandom(0, 3) == 2)
+        nextForm();
 }

@@ -15,9 +15,9 @@ const map<Action, Posn> defaultMap{
     {Action::RIGHT, Posn{1, 0}},
     {Action::LEFT, Posn{-1, 0}}};
 
-HoldControl::HoldControl(size_t con, map<Action, Posn> m) : MovementComponent{}, controlNum{con}, moves{m}, current{Action::NONE} {}
+HoldControl::HoldControl(size_t con, map<Action, Posn> m) : MovementComponent{}, controlNum{con}, moves{m}, current{Action::RIGHT} {}
 
-HoldControl::HoldControl(size_t con) : MovementComponent{}, controlNum{con}, moves{defaultMap}, current{Action::NONE} {}
+HoldControl::HoldControl(size_t con) : MovementComponent{}, controlNum{con}, moves{defaultMap}, current{Action::RIGHT} {}
 
 Posn HoldControl::velocity(const Entity &e) {
     const vector<Action> &acts = e.getActions();

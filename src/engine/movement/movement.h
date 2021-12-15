@@ -22,6 +22,7 @@ public:
     Movement(unique_ptr<MovementComponent> base);
     void addMovement(string s, unique_ptr<MovementComponent> mov);
     void removeMovement(string s);
+    void clearMovement();
 };
 
 #endif

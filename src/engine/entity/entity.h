@@ -74,6 +74,7 @@ public:
 
     void addMovement(string s, unique_ptr<MovementComponent> m);
     void removeMovement(string s);
+    void clearMovement();
     Posn &moveVelocity();
     Posn getPastVelocity();
     void setVelocity(Posn v);

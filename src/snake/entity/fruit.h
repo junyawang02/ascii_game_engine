@@ -7,6 +7,7 @@
 
 class Fruit : public Acceptor<Entity, Fruit, Collider> {
     void doCreate() override;
+    void doOnTick() override;
 public:
     Fruit(int x, int y);
 };

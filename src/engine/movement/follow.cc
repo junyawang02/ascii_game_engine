@@ -1,15 +1,15 @@
-#include "../util/posn.h"
-#include "../entity/entity.h"
-#include "movementComponent.h"
 #include "follow.h"
+#include "../entity/entity.h"
+#include "../util/posn.h"
+#include "movementComponent.h"
 #include <cmath>
 
-Follow::Follow(Entity *ent, int s): MovementComponent{}, leader{ent}, speed{s} {}
+Follow::Follow(Entity *ent, int s) : MovementComponent{}, leader{ent}, speed{s} {}
 
 Posn Follow::velocity(const Entity &e) {
     Posn pos = e.getPos();
     Posn lPos = leader->getPos();
-    int xTiles = (speed % 2 == 0)? speed / 2 : speed / 2 + 1; // alloted tiles to move in x direction
+    int xTiles = (speed % 2 == 0) ? speed / 2 : speed / 2 + 1; // alloted tiles to move in x direction
     int yTiles = speed / 2;
     int extraX = 0;
 

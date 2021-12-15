@@ -31,3 +31,7 @@ void Movement::addMovement(string s, unique_ptr<MovementComponent> mov) {
 void Movement::removeMovement(string s) {
     moveMap.erase(s);
 }
+
+void Movement::clearMovement() {
+    moveMap.clear();
+}
