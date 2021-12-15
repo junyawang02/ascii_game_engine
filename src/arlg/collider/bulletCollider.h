@@ -4,7 +4,6 @@
 #include "../../config/colDecider.h"
 
 class BulletCollider: public Collider {
-    Bullet *bullet;
     void doVisit(Player &e) override;
     void doVisit(Enemy &e) override;
     void doVisit(Bullet &e) override;
