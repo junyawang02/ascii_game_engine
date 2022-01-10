@@ -1,8 +1,8 @@
 #include "fireCollider.h"
-#include "../entity/enemy.h"
-#include "../entity/player.h"
-#include "../entity/fire.h"
 #include "../entity/bullet.h"
+#include "../entity/enemy.h"
+#include "../entity/fire.h"
+#include "../entity/player.h"
 
 FireCollider::FireCollider(Fire *f) : Collider{f} {}
 

@@ -12,7 +12,7 @@ using std::deque;
 using std::unique_ptr;
 using std::vector;
 
-Game::Game(): clock{Clock{}} {}
+Game::Game() : clock{Clock{}} {}
 
 Game::Game(deque<unique_ptr<State>> states) : clock{Clock{}}, states{std::move(states)} {}
 
@@ -50,11 +50,11 @@ void Game::go() {
             ++numTick;
             vector<Action> inputs = getAllActions();
             states[0]->updateActions(inputs);
-            updateViews();
-            displayViews();
             states[0]->onTick(*this);
-            if (inputs[0] == Action::ESCAPE)
-                stop();
+            if (playing) {
+                updateViews();
+                displayViews();
+            }
         }
     }
 }

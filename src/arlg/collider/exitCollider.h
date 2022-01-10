@@ -5,9 +5,10 @@
 
 class Exit;
 
-class ExitCollider: public Collider {
+class ExitCollider : public Collider {
     Exit *exit;
     void doVisit(Player *e) override;
+
 public:
     ExitCollider(Exit *e);
 };

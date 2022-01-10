@@ -1,9 +1,9 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
+#include "../util/action.h"
 #include "controller.h"
 #include "ncurses.h"
-#include "../util/action.h"
 #include <map>
 
 using std::map;

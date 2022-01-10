@@ -4,12 +4,12 @@
 #include "../entity/entity.h"
 #include "../physics/physics.h"
 #include "../sprite/bitmap.h"
+#include "../util/action.h"
 #include "../util/posn.h"
 #include <list>
 #include <map>
 #include <memory>
 #include <vector>
-#include "../util/action.h"
 
 using std::list;
 using std::map;
@@ -34,8 +34,8 @@ public:
     void onTick(Game &g);
     void addEntity(int height, unique_ptr<Entity> e);
     void addEntities(int height, list<unique_ptr<Entity>> &ents);
-    list <Entity*> getEntities(int height);
-    bool checkCollisions(Entity *e, list<Entity*> others);
+    list<Entity *> getEntities(int height);
+    bool checkCollisions(Entity *e, list<Entity *> others);
     void updateActions(const vector<Action> &inputs);
     vector<pair<const Posn &, const Bitmap &>> drawList();
 };

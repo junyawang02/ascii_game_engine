@@ -1,8 +1,8 @@
 #include "gameView.h"
+#include "../model/game.h"
 #include "../sprite/bitmap.h"
 #include "../util/posn.h"
 #include "../util/window.h"
-#include "../model/game.h"
 #include "ncurses.h"
 #include <memory>
 #include <string>
@@ -26,7 +26,7 @@ GameView::GameView(Game *g) : View{}, theGame{g} {
 
 GameView::~GameView() { endwin(); }
 
-void GameView::update() {
+void GameView::doUpdate() {
     screen->clear();
     auto drawList = theGame->drawList();
     for (auto &d : drawList)
@@ -34,16 +34,16 @@ void GameView::update() {
     screen->drawBorder();
 }
 
-void GameView::update(Line line, string text) {
+void GameView::doUpdate(Line line, string text) {
     status->updateLine(line, text);
 }
 
-void GameView::clear() {
+void GameView::doClear() {
     screen->clear();
     status->clear();
 }
 
-void GameView::displayView() {
+void GameView::doDisplayView() {
     screen->refreshWin();
     status->refreshWin();
 }

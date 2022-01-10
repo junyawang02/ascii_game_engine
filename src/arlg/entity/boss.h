@@ -9,7 +9,7 @@ using std::pair;
 
 class Player;
 
-class Boss: public Enemy {
+class Boss : public Enemy {
     Player *player;
     bool angry;
     void doCreate() override;
@@ -17,6 +17,7 @@ class Boss: public Enemy {
     void doBorderCollide(Border b) override;
     pair<Line, string> doUpdateStatus() override;
     pair<bool, bool> doEndState() override;
+
 public:
     Boss(int x, int y, Player *p);
     void changeDirection();

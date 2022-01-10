@@ -1,11 +1,11 @@
 #ifndef EXIT_H
 #define EXIT_H
 
-#include "arlgEntity.h"
-#include "../../engine/util/acceptor.h"
 #include "../../config/collider.h"
+#include "../../engine/util/acceptor.h"
+#include "arlgEntity.h"
 
-class Exit: public Acceptor<ARLGEntity, Exit, Collider> {
+class Exit : public Acceptor<ARLGEntity, Exit, Collider> {
     bool isOpen;
     bool isFinish;
     pair<Line, string> doUpdateStatus() override;

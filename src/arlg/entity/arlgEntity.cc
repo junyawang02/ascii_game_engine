@@ -8,7 +8,7 @@
 using std::unique_ptr;
 
 ARLGEntity::ARLGEntity(int x, int y, unique_ptr<Sprite> s, unique_ptr<MovementComponent> m,
-           unique_ptr<Collider> c) : Entity{x, y, std::move(s), std::move(m), std::move(c)} {}
+                       unique_ptr<Collider> c) : Entity{x, y, std::move(s), std::move(m), std::move(c)} {}
 
 ARLGEntity::ARLGEntity(int x, int y, unique_ptr<Sprite> s, unique_ptr<Collider> c) : Entity{x, y, std::move(s), std::move(c)} {}
 

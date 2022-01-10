@@ -6,8 +6,6 @@ Window::Window(int height, int width, int starty, int startx) : theWindow{newwin
 
 Window::~Window() { delwin(theWindow); }
 
-WINDOW *Window::getWindow() { return theWindow; }
-
 void Window::refreshWin() { wrefresh(theWindow); }
 
 void Window::drawBorder() { wborder(theWindow, '|', '|', '-', '-', '+', '+', '+', '+'); }

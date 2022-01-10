@@ -1,7 +1,7 @@
 #include "bossCollider.h"
-#include "../entity/player.h"
-#include "../entity/bullet.h"
 #include "../entity/boss.h"
+#include "../entity/bullet.h"
+#include "../entity/player.h"
 
 BossCollider::BossCollider(Boss *b) : Collider{b}, boss{b} {}
 

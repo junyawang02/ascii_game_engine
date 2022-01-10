@@ -1,10 +1,10 @@
 #ifndef DAMAGEABLE_H
 #define DAMAGEABLE_H
 
-#include "arlgEntity.h"
+#include "../../config/collider.h"
 #include "../../engine/movement/movementComponent.h"
 #include "../../engine/sprite/sprite.h"
-#include "../../config/collider.h"
+#include "arlgEntity.h"
 #include <memory>
 
 using std::unique_ptr;

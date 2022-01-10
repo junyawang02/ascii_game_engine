@@ -1,10 +1,10 @@
 #include "popupCollider.h"
-#include "../entity/enemy.h"
-#include "../entity/player.h"
-#include "../entity/bullet.h"
-#include "../entity/health.h"
-#include "../entity/popup.h"
 #include "../entity/boss.h"
+#include "../entity/bullet.h"
+#include "../entity/enemy.h"
+#include "../entity/health.h"
+#include "../entity/player.h"
+#include "../entity/popup.h"
 
 PopupCollider::PopupCollider(Popup *p) : Collider{p}, popup{p} {}
 

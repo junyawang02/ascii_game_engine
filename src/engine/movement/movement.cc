@@ -1,12 +1,12 @@
 #include "movement.h"
 #include "../util/posn.h"
 #include <map>
-#include <string>
 #include <memory>
+#include <string>
 
 using std::map;
-using std::unique_ptr;
 using std::string;
+using std::unique_ptr;
 
 class Entity;
 

@@ -2,6 +2,6 @@
 
 enum Action;
 
-Action Controller::getAction(){
-  return action(); 
+Action Controller::getAction() {
+    return action();
 }

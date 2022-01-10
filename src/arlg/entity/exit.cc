@@ -15,7 +15,8 @@ using std::string;
 using std::vector;
 
 Exit::Exit(int x, int y) : Acceptor{x, y, make_unique<Animated>(vector<Bitmap>{Bitmap{'e'}, Bitmap{'E'}}),
-                                    make_unique<ExitCollider>(this)}, isOpen{false}, isFinish{false} {}
+                                    make_unique<ExitCollider>(this)},
+                           isOpen{false}, isFinish{false} {}
 
 pair<bool, bool> Exit::doEndState() {
     if (isFinish)

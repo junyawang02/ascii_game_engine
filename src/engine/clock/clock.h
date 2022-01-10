@@ -5,6 +5,7 @@
 
 class Clock {
     clock_t time;
+
 public:
     Clock();
     bool tick();

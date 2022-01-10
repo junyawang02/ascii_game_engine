@@ -1,10 +1,10 @@
 #include "snakeCollider.h"
-#include "../entity/enemy.h"
-#include "../entity/player.h"
-#include "../entity/bullet.h"
-#include "../entity/health.h"
-#include "../entity/snake.h"
 #include "../entity/boss.h"
+#include "../entity/bullet.h"
+#include "../entity/enemy.h"
+#include "../entity/health.h"
+#include "../entity/player.h"
+#include "../entity/snake.h"
 
 SnakeCollider::SnakeCollider(Snake *s) : Collider{s}, snake{s} {}
 

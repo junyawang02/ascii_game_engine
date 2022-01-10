@@ -1,8 +1,8 @@
 #include "colliderBase.h"
-#include"../entity/entity.h"
+#include "../entity/entity.h"
 #include "../util/posn.h"
 
-ColliderBase::ColliderBase(Entity *s): self{s} {};
+ColliderBase::ColliderBase(Entity *s) : self{s} {};
 
 void ColliderBase::bounceSelf(Entity *s) {
     Posn vel = s->getPastVelocity();

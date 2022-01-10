@@ -1,23 +1,22 @@
 #include "boss.h"
 #include "../../engine/movement/gravitate.h"
 #include "../../engine/movement/linear.h"
-#include "../../engine/movement/gravitate.h"
-#include "../../engine/sprite/bitmap.h"
 #include "../../engine/sprite/animated.h"
-#include "../../engine/util/myRandom.h"
+#include "../../engine/sprite/bitmap.h"
 #include "../../engine/util/border.h"
-#include "stalker.h"
-#include "walker.h"
+#include "../../engine/util/myRandom.h"
+#include "../collider/bossCollider.h"
 #include "popup.h"
 #include "snake.h"
 #include "sprites.h"
-#include "../collider/bossCollider.h"
+#include "stalker.h"
+#include "walker.h"
 #include <memory>
 #include <vector>
 
 using std::make_unique;
-using std::vector;
 using std::pair;
+using std::vector;
 
 class Player;
 
@@ -88,7 +87,7 @@ pair<Line, string> Boss::doUpdateStatus() {
     if (angry) {
         const string angerMessage = "The boss is enraged!";
         return pair<Line, string>{Line::L3, angerMessage};
-    } 
+    }
     const string peaceMessage = "The boss is happy. But you must defeat it because this is a game.";
     return pair<Line, string>{Line::L3, peaceMessage};
 }

@@ -1,9 +1,9 @@
 #include "healthCollider.h"
-#include "../entity/player.h"
 #include "../entity/enemy.h"
 #include "../entity/health.h"
+#include "../entity/player.h"
 
-HealthCollider::HealthCollider(Health *h): Collider{h} {}
+HealthCollider::HealthCollider(Health *h) : Collider{h} {}
 
 void HealthCollider::doVisit(Player *e) {
     e->addHealth(1);

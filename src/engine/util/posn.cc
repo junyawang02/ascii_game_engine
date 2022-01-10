@@ -1,6 +1,6 @@
 #include "posn.h"
 
-Posn::Posn(): x{0}, y{0} {}
+Posn::Posn() : x{0}, y{0} {}
 
 Posn::Posn(int x, int y) : x{x}, y{y} {}
 

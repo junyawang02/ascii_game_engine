@@ -2,13 +2,6 @@
 #define COLLIDERBASE_H
 
 class Entity;
-class Player;
-class Bullet;
-class Enemy;
-class Exit;
-class Health;
-class Message;
-class Fire;
 
 class ColliderBase {
 private:
@@ -27,4 +20,3 @@ public:
 };
 
 #endif
-

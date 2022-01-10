@@ -3,11 +3,11 @@
 #include <string>
 #include <vector>
 
-#include "model.h"
 #include "../controller/controller.h"
 #include "../util/action.h"
 #include "../util/line.h"
 #include "../view/view.h"
+#include "model.h"
 
 using std::string;
 using std::vector;

@@ -1,20 +1,19 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "ncurses.h"
 #include "line.h"
-#include <string>
+#include "ncurses.h"
 #include "posn.h"
+#include <string>
 
 using std::string;
 
 class Window {
-    WINDOW *theWindow; 
+    WINDOW *theWindow;
 
 public:
     Window(int height, int width, int starty, int startx);
     ~Window();
-    WINDOW *getWindow();
     void refreshWin();
     void drawBorder();
     void updateLine(Line line, string text);

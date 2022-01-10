@@ -5,6 +5,7 @@
 
 class Controller {
     virtual Action action() = 0;
+
 public:
     virtual ~Controller() = default;
     Action getAction();

@@ -13,7 +13,7 @@ using std::pair;
 Head::Head(int x, int y) : Acceptor{x, y, make_unique<Still>(Bitmap{'S'}),
                                     make_unique<HoldControl>(0),
                                     make_unique<HeadCollider>(this)},
-                           toGrow{false}, dead{false}, count{4} {}
+                           toGrow{false}, dead{false}, count{5} {}
 
 void Head::doOnTick() {
     if (dead)

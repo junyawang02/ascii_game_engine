@@ -8,18 +8,18 @@
 #include "../sprite/sprite.h"
 #include "../util/action.h"
 #include "../util/border.h"
-#include "../util/posn.h"
 #include "../util/line.h"
+#include "../util/posn.h"
+#include <list>
 #include <memory>
 #include <string>
 #include <vector>
-#include <list>
 
+using std::list;
+using std::pair;
 using std::string;
 using std::unique_ptr;
 using std::vector;
-using std::list;
-using std::pair;
 
 class Entity {
     int countdown;
